@@ -23,6 +23,8 @@ export default function Header() {
 }
 
 const Logo = MuiStyled("h1")({
-  fontFamily: "logo !important",
   padding: "10px 5px",
+  fontFamily: "logo !important",
+  fontSize: "32px !important",
+  fontWeight: "700 !important",
 });
