@@ -1,24 +1,34 @@
-import { Html, Head, Main, NextScript } from "next/document";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentProps,
+} from "next/document";
+import {
+  DocumentHeadTags,
+  DocumentHeadTagsProps,
+  documentGetInitialProps,
+} from "@mui/material-nextjs/v13-pagesRouter";
 import { ThemeProvider } from "@mui/material";
-import { useMemo, useState } from "react";
-import { customtheme } from "@/styles/theme";
-import { useColorMode } from "@/hooks/useColorMode";
+import { useThemeHandler } from "@/util/useThemeHandler";
+import { createCustomTheme } from "@/styles/theme";
+import { useMemo } from "react";
 
-export default function Document() {
-  const { mode } = useColorMode();
-  const theme = useMemo(() => customtheme(mode), [mode]);
+export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
+  const theme = createCustomTheme("light");
 
   return (
     <Html lang="en" data-color-scheme="light">
-      <Head />
+      <Head>
+        <DocumentHeadTags {...props} />
+      </Head>
       <body>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <Main />
-            <NextScript />
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <ThemeProvider theme={theme}>
+          <Main />
+          <NextScript />
+        </ThemeProvider>
       </body>
     </Html>
   );
