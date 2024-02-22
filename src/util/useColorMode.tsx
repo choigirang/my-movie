@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useMemo, useState, useContext } from "react";
 import { ColorModeContextType } from "../type/common";
 import { PaletteMode } from "@mui/material";
+import { createCustomTheme } from "@/styles/palette";
 
 const ColorModeContext = createContext<ColorModeContextType | undefined>(
   undefined
@@ -34,10 +35,14 @@ export const ColorModeProvider = ({ children }: { children: ReactNode }) => {
  *
  * @returns 컨텍스트 사용
  */
-export const useThemeHandler = (): ColorModeContextType => {
+export const useColorMode = (): ColorModeContextType => {
   const context = useContext(ColorModeContext);
   if (!context) {
     throw new Error("useColorMode must be used within a ColorModeProvider");
   }
   return context;
 };
+
+const { mode } = useColorMode();
+
+export const theme = useMemo(() => createCustomTheme(mode), [mode]);
