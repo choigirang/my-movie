@@ -11,8 +11,9 @@
   "dependencies": {
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",
+    "@emotion/server": "^11.11.0",
     "@mui/material": "^5.15.10",
-    "@mui/material-nextjs": "^5.15.9",
+    "@mui/material-nextjs": "^5.15.11",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
@@ -21,6 +22,9 @@
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
+    "@mui/icons-material": "^5.15.10",
+    "@mui/styled-engine": "^5.15.11",
+    "@types/material-ui": "^0.21.16",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
