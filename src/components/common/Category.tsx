@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled as MuiStyled } from "@mui/material";
 import Link from "next/link";
 
 const categoryLink = {
@@ -9,18 +9,23 @@ const categoryLink = {
 
 export default function Category() {
   return (
-    <div className="d-flex align-items-center gap-3">
+    <Container>
       {Object.entries(categoryLink).map(([key, value]) => (
-        <Link
-          href={value}
-          key={key}
-          className="text-decoration-none text-dark waves-effect waves-light"
-        >
+        <PageLink href={value} key={key}>
           {key}
-        </Link>
+        </PageLink>
       ))}
-    </div>
+    </Container>
   );
 }
 
-const PageLink = styled;
+const Container = MuiStyled("div")({
+  width: 300,
+  display: "flex",
+  justifyContent: "space-around",
+});
+
+const PageLink = MuiStyled(Link)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  textDecoration: "none",
+}));
