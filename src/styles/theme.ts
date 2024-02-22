@@ -1,5 +1,5 @@
-import { PaletteMode } from "@mui/material";
-import { createTheme } from "@mui/material/styles";
+import { PaletteMode, createTheme } from "@mui/material";
+
 import { Noto_Sans_KR } from "next/font/google";
 
 const notoSans = Noto_Sans_KR({
@@ -8,7 +8,7 @@ const notoSans = Noto_Sans_KR({
   display: "swap",
 });
 
-export const theme = (mode: PaletteMode) =>
+export const createCustomTheme = (mode: PaletteMode) =>
   createTheme({
     typography: {
       fontFamily: notoSans.style.fontFamily,
@@ -36,11 +36,16 @@ export const theme = (mode: PaletteMode) =>
             height: "100%",
             width: "100%",
           },
+          h1: {
+            fontSize: 21,
+          },
         },
       },
     },
     palette: {
       mode,
-      primary: {},
+      primary: {
+        main: "#ffffff",
+      },
     },
   });
