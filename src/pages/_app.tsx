@@ -9,11 +9,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <StyledEngineProvider injectFirst>
       <AppRouterCacheProvider options={{ enableCssLayer: true }} {...pageProps}>
-        <ColorModeProvider>
-          <ThemeProvider theme={theme}>
+        {/* <ColorModeProvider> */}
+          {/* <ThemeProvider theme={theme}> */}
             <Component {...pageProps} />
-          </ThemeProvider>
-        </ColorModeProvider>
+          {/* </ThemeProvider> */}
+        {/* </ColorModeProvider> */}
       </AppRouterCacheProvider>
     </StyledEngineProvider>
   );
