@@ -45,4 +45,4 @@ export const useColorMode = (): ColorModeContextType => {
 
 const { mode } = useColorMode();
 
-export const theme = useMemo(() => createCustomTheme(mode), [mode]);
+// export const theme = useMemo(() => createCustomTheme(mode), [mode]);
