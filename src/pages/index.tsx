@@ -1,6 +1,13 @@
 import Header from "@/components/common/Header";
-import { useColorMode } from "@/util/useColorMode";
-import { Button, styled as MuiStyled, useColorScheme } from "@mui/material";
+import MovieList from "@/components/home/MovieList";
+import { useColorMode } from "@/hook/useColorMode";
+import {
+  Button,
+  Container,
+  styled as MuiStyled,
+  styled,
+  useColorScheme,
+} from "@mui/material";
 import Head from "next/head";
 
 export default function Home() {
@@ -15,13 +22,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <Button onClick={toggleColorMode}></Button> */}
-      <Container></Container>
+      <MuiContainer>
+        <MovieList />
+      </MuiContainer>
     </>
   );
 }
 
-const Container = MuiStyled("div")({
-  width: "100%",
-  display: "flex",
-  justifyContent: "center",
-});
+const MuiContainer = styled(Container)({});
