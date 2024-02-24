@@ -1,5 +1,5 @@
 import Header from "@/components/common/Header";
-import { useColorMode } from "@/util/useColorMode";
+import { useColorMode } from "@/hook/useColorMode";
 import { Button, styled as MuiStyled, useColorScheme } from "@mui/material";
 import Head from "next/head";
 
