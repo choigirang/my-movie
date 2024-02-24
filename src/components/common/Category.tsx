@@ -2,7 +2,7 @@ import { styled as MuiStyled } from "@mui/material";
 import Link from "next/link";
 
 const categoryLink = {
-  HOME: "/home",
+  HOME: "/",
   CALENDAR: "/calendar",
   MY: "/my",
 };
