@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "logo";
+  src: url("/fonts/logo-fonts.ttf") format("truetype");
+}
+
 html,
 body,
 div,

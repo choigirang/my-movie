@@ -1,6 +1,11 @@
+import Header from "@/components/common/Header";
+import { useColorMode } from "@/util/useColorMode";
+import { Button, styled as MuiStyled, useColorScheme } from "@mui/material";
 import Head from "next/head";
 
 export default function Home() {
+  // const { toggleColorMode } = useThemeHandler();
+
   return (
     <>
       <Head>
@@ -9,6 +14,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/* <Button onClick={toggleColorMode}></Button> */}
+      <Container></Container>
     </>
   );
 }
+
+const Container = MuiStyled("div")({
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+});
