@@ -1,10 +1,10 @@
 import Header from "@/components/common/Header";
-import { useThemeHandler } from "@/util/useColorMode";
+import { useColorMode } from "@/util/useColorMode";
 import { Button, styled as MuiStyled, useColorScheme } from "@mui/material";
 import Head from "next/head";
 
 export default function Home() {
-  const { toggleColorMode } = useThemeHandler();
+  // const { toggleColorMode } = useThemeHandler();
 
   return (
     <>
@@ -15,9 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <Button onClick={toggleColorMode}></Button> */}
-      <Container>
-        <Header></Header>
-      </Container>
+      <Container></Container>
     </>
   );
 }
