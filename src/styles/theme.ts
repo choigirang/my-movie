@@ -1,4 +1,4 @@
-import { PaletteMode, createTheme } from "@mui/material";
+import { PaletteMode, Theme, createTheme, makeStyles } from "@mui/material";
 import { Noto_Sans_KR } from "next/font/google";
 
 const notoSans = Noto_Sans_KR({
@@ -7,7 +7,34 @@ const notoSans = Noto_Sans_KR({
   display: "swap",
 });
 
-export const createCustomTheme = (mode: PaletteMode) =>
+function componentsStyle(name: string, styles: Record<string, any>) {
+  return {
+    [name]: {
+      styleOverrides: {
+        root: {
+          ...styles,
+        },
+      },
+    },
+  };
+}
+
+const customComponentsStyle = {
+  ...componentsStyle("MuiContainer", {
+    maxWidth: "1200px",
+    margin: "0 auto",
+    display: "flex",
+    justifyContent: "center",
+    paddingLeft: 0,
+  }),
+  MuiGrid: {
+    styleOverrides: {
+      root: {},
+    },
+  },
+};
+
+export const createCustomTheme = () =>
   createTheme({
     typography: {
       fontFamily: notoSans.style.fontFamily,
@@ -15,8 +42,8 @@ export const createCustomTheme = (mode: PaletteMode) =>
         fontSize: 16,
       },
     },
+    components: customComponentsStyle,
     palette: {
-      mode,
       common: {
         white: "white",
         black: "black",
