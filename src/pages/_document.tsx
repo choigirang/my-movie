@@ -18,6 +18,10 @@ export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
     <>
       <Head>
         <DocumentHeadTags {...props} />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+        />
       </Head>
       <body>
         <Header />
