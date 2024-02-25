@@ -18,15 +18,19 @@ export const queryClient = new QueryClient({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const theme = createCustomTheme();
+
   return (
     <QueryClientProvider client={queryClient}>
+      {/* <AppRouterCacheProvider> */}
       <StyledEngineProvider injectFirst>
         {/* <ColorModeProvider> */}
-        <ThemeProvider theme={createCustomTheme}>
+        <ThemeProvider theme={theme}>
           <Component {...pageProps} />
         </ThemeProvider>
         {/* </ColorModeProvider> */}
       </StyledEngineProvider>
+      {/* </AppRouterCacheProvider> */}
     </QueryClientProvider>
   );
 }
