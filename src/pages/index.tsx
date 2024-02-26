@@ -9,9 +9,12 @@ import {
   useColorScheme,
 } from "@mui/material";
 import Head from "next/head";
+import ArrowCircleLeftSharpIcon from "@mui/icons-material/ArrowCircleLeftSharp";
+import useMoveScroll from "@/hook/useScrollTop";
 
 export default function Home() {
   // const { toggleColorMode } = useThemeHandler();
+  const { scrollToTop } = useMoveScroll();
 
   return (
     <>
@@ -25,6 +28,24 @@ export default function Home() {
       <MuiContainer>
         <MovieList />
       </MuiContainer>
+      <ArrowCircleLeftSharpIcon
+        onClick={() => scrollToTop()}
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          left: "50%",
+          transform: "translate(-50%, -50%) rotate(90deg)",
+          display: "flex",
+          margin: "0 auto",
+          fill: "white",
+          fontSize: 50,
+          zIndex: 998,
+          "&:hover": {
+            cursor: "pointer",
+            transition: "all .3s",
+          },
+        }}
+      />
     </>
   );
 }
