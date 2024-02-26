@@ -1,5 +1,4 @@
 import { ColorModeProvider, useColorMode } from "@/hook/useColorMode";
-import { ColorModeProvider, useColorMode } from "@/hook/useColorMode";
 import "@/styles/globals.css";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material";
 import type { AppProps } from "next/app";
