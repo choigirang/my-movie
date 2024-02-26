@@ -1,9 +1,9 @@
-import { MovieDetailType } from "@/type/movie";
+import { MovieDetailType, MovieInfoProps } from "@/type/movie";
 import { Grid, styled as MuiStyled } from "@mui/material";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import MovieImg from "./MovieImg";
 
-export default function MovieInfo(each: MovieDetailType) {
+export default function MovieInfo({ setDetailData, ...each }: MovieInfoProps) {
   const [hover, setHover] = useState(false);
   const { title, poster_path: imgUrl, vote_average: vote } = each;
 
@@ -22,8 +22,13 @@ export default function MovieInfo(each: MovieDetailType) {
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      onClick={() => setDetailData(each)}
     >
-      <MovieImg $mouseHover={hover} url={imgUrl} />
+      <MovieImg
+        $mouseHover={hover}
+        url={imgUrl}
+        vote={Number(vote.toFixed(1))}
+      />
       <Title $mouseHover={hover}>{title}</Title>
     </Grid>
   );
@@ -46,5 +51,9 @@ const Title = MuiStyled("span")<{ $mouseHover: boolean }>(
     color: "white",
     opacity: $mouseHover ? 1 : 0,
     transition: "all .3s",
+
+    "&:hover": {
+      cursor: "pointer",
+    },
   })
 );
