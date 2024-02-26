@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type MovieDetailType = {
   adult: boolean;
   backdrop_path: string;
@@ -14,3 +16,7 @@ export type MovieDetailType = {
   vote_average: number;
   vote_count: number;
 };
+
+export interface MovieInfoProps extends MovieDetailType {
+  setDetailData: Dispatch<SetStateAction<undefined | MovieDetailType>>;
+}
