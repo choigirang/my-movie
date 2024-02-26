@@ -71,7 +71,7 @@ const GridCustom = MuiStyled(Grid)({
   width: "70%",
   height: "90%",
   display: "flex",
-  backgroundColor: "rgba(24, 24, 24, 0.983)",
+  backgroundColor: "rgb(24, 24, 24)",
   borderRadius: "10px",
   position: "relative",
 
