@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useMemo, useState, useContext } from "react";
 import { ColorModeContextType } from "../type/common";
 import { PaletteMode } from "@mui/material";
-import { createCustomTheme } from "@/styles/palette";
+import { createCustomTheme } from "@/styles/theme";
 
 const ColorModeContext = createContext<ColorModeContextType | undefined>(
   undefined
@@ -45,4 +45,4 @@ export const useColorMode = (): ColorModeContextType => {
 
 const { mode } = useColorMode();
 
-export const theme = useMemo(() => createCustomTheme(mode), [mode]);
+// export const theme = useMemo(() => createCustomTheme(mode), [mode]);

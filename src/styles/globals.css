@@ -1,6 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: "logo";
   src: url("/fonts/logo-fonts.ttf") format("truetype");
+}
+
+#__next {
+  width: 100%;
+  justify-content: center;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "NotoSans";
+}
+
+body {
+  background-image: linear-gradient(
+    111.4deg,
+    rgba(7, 7, 9, 1) 6.5%,
+    rgb(12, 10, 54) 93.2%
+  );
 }
 
 html,

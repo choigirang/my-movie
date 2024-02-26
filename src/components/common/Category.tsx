@@ -2,9 +2,9 @@ import { styled as MuiStyled } from "@mui/material";
 import Link from "next/link";
 
 const categoryLink = {
-  HOME: "/",
-  CALENDAR: "/calendar",
-  MY: "/my",
+  홈: "/",
+  캘린더: "/calendar",
+  로그인: "/my",
 };
 
 export default function Category() {

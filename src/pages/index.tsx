@@ -1,10 +1,20 @@
 import Header from "@/components/common/Header";
+import MovieList from "@/components/home/MovieList";
 import { useColorMode } from "@/hook/useColorMode";
-import { Button, styled as MuiStyled, useColorScheme } from "@mui/material";
+import {
+  Button,
+  Container,
+  styled as MuiStyled,
+  styled,
+  useColorScheme,
+} from "@mui/material";
 import Head from "next/head";
+import ArrowCircleLeftSharpIcon from "@mui/icons-material/ArrowCircleLeftSharp";
+import useMoveScroll from "@/hook/useScrollTop";
 
 export default function Home() {
   // const { toggleColorMode } = useThemeHandler();
+  const { scrollToTop } = useMoveScroll();
 
   return (
     <>
@@ -15,13 +25,29 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <Button onClick={toggleColorMode}></Button> */}
-      <Container></Container>
+      <MuiContainer>
+        <MovieList />
+      </MuiContainer>
+      <ArrowCircleLeftSharpIcon
+        onClick={() => scrollToTop()}
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          left: "50%",
+          transform: "translate(-50%, -50%) rotate(90deg)",
+          display: "flex",
+          margin: "0 auto",
+          fill: "white",
+          fontSize: 50,
+          zIndex: 998,
+          "&:hover": {
+            cursor: "pointer",
+            transition: "all .3s",
+          },
+        }}
+      />
     </>
   );
 }
 
-const Container = MuiStyled("div")({
-  width: "100%",
-  display: "flex",
-  justifyContent: "center",
-});
+const MuiContainer = styled(Container)({});

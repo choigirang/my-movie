@@ -1,22 +1,10 @@
-import { PaletteMode, createTheme } from "@mui/material";
-import { Noto_Sans_KR } from "next/font/google";
+import { createTheme } from "@mui/material";
+import { customComponentsStyle } from "./customComponents";
 
-const notoSans = Noto_Sans_KR({
-  weight: ["100", "300", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-});
-
-export const createCustomTheme = (mode: PaletteMode) =>
+export const createCustomTheme = () =>
   createTheme({
-    typography: {
-      fontFamily: notoSans.style.fontFamily,
-      subtitle1: {
-        fontSize: 16,
-      },
-    },
+    components: customComponentsStyle,
     palette: {
-      mode,
       common: {
         white: "white",
         black: "black",
