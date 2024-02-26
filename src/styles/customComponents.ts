@@ -32,9 +32,16 @@ export const customComponentsStyle = {
   }),
   ...componentsStyle("MuiButton", {
     backgroundColor: "#ffffff",
+    minWidth: 0,
+    padding: 0,
 
     "&:hover": {
       color: "#ffffff",
+    },
+
+    "& .MuiButton-startIcon": {
+      margin: 0,
+      padding: 5
     },
   }),
 };
