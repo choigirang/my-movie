@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, RefObject, SetStateAction } from "react";
+import { InfiniteData } from "react-query";
 
 export type MovieDetailType = {
   adult: boolean;
@@ -20,3 +21,10 @@ export type MovieDetailType = {
 export interface MovieInfoProps extends MovieDetailType {
   setDetailData: Dispatch<SetStateAction<undefined | MovieDetailType>>;
 }
+
+export type SearchResultsProps = {
+  keyword: string | number;
+  apiKeyword: string | number;
+  observe: RefObject<HTMLLIElement>;
+  data: InfiniteData<MovieDetailType> | undefined;
+};
