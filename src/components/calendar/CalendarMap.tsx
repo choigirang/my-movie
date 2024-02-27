@@ -1,15 +1,17 @@
 import useCalendar from "@/hook/useCalendar";
 import { Button, Container, styled as MuiStyled } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { subMonths } from "date-fns";
 import Week from "./Week";
+import AddMovie from "./AddMovie";
 
 const DAY_LIST = ["일", "월", "화", "수", "목", "금", "토"];
 
 export default function CalendarMap() {
   const { weekCalendarList, currentDate, setCurrentDate } = useCalendar();
+  const [addCalender, setAddCalendar] = useState<boolean>(false);
 
   const handleMonth = (num: number) => {
     setCurrentDate(subMonths(currentDate, num));
@@ -17,6 +19,7 @@ export default function CalendarMap() {
 
   return (
     <Wrapper>
+      {/* 날짜 선택 */}
       <YearDate>
         <Button
           startIcon={<KeyboardArrowLeftIcon />}
@@ -30,16 +33,19 @@ export default function CalendarMap() {
           onClick={() => handleMonth(-1)}
         />
       </YearDate>
+      {/* 캘린더 */}
       <WeekContainer>
+        {/* 요일 */}
         <DaysList>
           {DAY_LIST.map((key) => (
             <SubTitle key={key}>{key}</SubTitle>
           ))}
         </DaysList>
         {weekCalendarList.map((week, key) => (
-          <Week key={key} days={week}></Week>
+          <Week key={key} days={week} clickDay={setAddCalendar}></Week>
         ))}
       </WeekContainer>
+      {addCalender && <AddMovie addCalendar={setAddCalendar}></AddMovie>}
     </Wrapper>
   );
 }
