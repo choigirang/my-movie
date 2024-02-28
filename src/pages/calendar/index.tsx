@@ -1,12 +1,11 @@
 import AddMovie from "@/components/calendar/AddMovie";
-import CalendarWrapper from "@/components/calendar/CalendarWrapper";
+import CalendarMap from "@/components/calendar/CalendarMap";
 import React, { useState } from "react";
 
 export default function Index() {
-
   return (
     <React.Fragment>
-      <CalendarWrapper></CalendarWrapper>
+      <CalendarMap></CalendarMap>
     </React.Fragment>
   );
 }
