@@ -5,8 +5,8 @@ import type { AppProps } from "next/app";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { createCustomTheme } from "@/styles/theme";
-import wrapper from "@/store";
 import PropTypes from "prop-types";
+import { wrapper } from "@/store/store";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
