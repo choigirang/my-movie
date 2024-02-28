@@ -17,46 +17,28 @@ export default function SearchMovie() {
   const [apiKeyword, setApiKeyword] = useState<string | number>("");
   const { data, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useMovieData(apiKeyword);
-  const observe = useRef<HTMLLIElement>(null);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setApiKeyword(keyword);
+    refetch();
   };
 
-  useEffect(() => {
-    if (observe.current && !hasNextPage) {
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          fetchNextPage();
-        }
-      },
-      { threshold: 1 }
-    );
-    if (observe.current) {
-      observer.observe(observe.current);
-    }
-
-    return () => {
-      if (observe.current) {
-        observer.unobserve(observe.current);
-      }
-    };
-  }, [observe.current, data?.pageParams]);
-
-
-  const props = {keyword, apiKeyword, data, observe}
+  const props = {
+    keyword,
+    apiKeyword,
+    data,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  };
 
   return (
     <React.Fragment>
       <Wrapper onSubmit={(e) => handleSubmit(e)}>
         <InputWithData>
           <Input aria-label="search-movie" onChange={setKeyword} />
-
-      <SearchResults {...props}/>
+          <SearchResults {...props} />
         </InputWithData>
         <Btn type="submit">검색</Btn>
       </Wrapper>
@@ -74,10 +56,12 @@ const Wrapper = MuiStyled("form")({
 const InputWithData = MuiStyled("div")({
   position: "relative",
   width: "100%",
-  height: "100%",
+  height: 50,
 });
 
-const Btn = MuiStyled(Button)({});
+const Btn = MuiStyled(Button)({
+  height: "100%",
+});
 
 const Input = MuiStyled("input")({
   width: "100%",
