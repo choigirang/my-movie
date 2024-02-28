@@ -24,11 +24,9 @@ export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
         />
       </Head>
       <body>
-        <ReduxProvider>
-          <Header />
-          <Main />
-          <NextScript />
-        </ReduxProvider>
+        <Header />
+        <Main />
+        <NextScript />
       </body>
     </>
   );
