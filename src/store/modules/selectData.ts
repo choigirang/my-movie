@@ -2,7 +2,7 @@ import { SelectMovieData } from "@/type/movie";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: SelectMovieData = {
-  id: undefined,
+  id: 1,
   title: undefined,
   genre_ids: undefined,
 };
@@ -21,7 +21,17 @@ export const selectMovieSlice = createSlice({
     },
     resetSelect: () => initialState,
   },
+
+  // /** 페이지 이동 시 상태 초기화가 필요한 경우 추가해야 함 */
+  // extraReducers: {
+  //   [HYDRATE]: (state, action) => {
+  //     return {
+  //       ...state
+  //       // ...action.payload.counter
+  //     };
+  //   }
+  // }
 });
 
 export const { saveSelectMovie, resetSelect } = selectMovieSlice.actions;
-export default selectMovieSlice.reducer;
+export default selectMovieSlice;
