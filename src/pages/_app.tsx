@@ -6,7 +6,9 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { createCustomTheme } from "@/styles/theme";
 import PropTypes from "prop-types";
-import { wrapper } from "@/store/store";
+import { persistor, store, wrapper } from "@/store/store";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/lib/integration/react";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,21 +20,25 @@ export const queryClient = new QueryClient({
   },
 });
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, ...pageProps }: AppProps) {
   const theme = createCustomTheme();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      {/* <AppRouterCacheProvider> */}
-      <StyledEngineProvider injectFirst>
-        {/* <ColorModeProvider> */}
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-        {/* </ColorModeProvider> */}
-      </StyledEngineProvider>
-      {/* </AppRouterCacheProvider> */}
-    </QueryClientProvider>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <QueryClientProvider client={queryClient}>
+          {/* <AppRouterCacheProvider> */}
+          <StyledEngineProvider injectFirst>
+            {/* <ColorModeProvider> */}
+            <ThemeProvider theme={theme}>
+              <Component {...pageProps} />
+            </ThemeProvider>
+            {/* </ColorModeProvider> */}
+          </StyledEngineProvider>
+          {/* </AppRouterCacheProvider> */}
+        </QueryClientProvider>
+      </PersistGate>
+    </Provider>
   );
 }
 
