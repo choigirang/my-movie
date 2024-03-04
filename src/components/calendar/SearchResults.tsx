@@ -1,16 +1,7 @@
 import { MovieDetailType, SearchResultsProps } from "@/type/movie";
-import React, {
-  ReactNode,
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { InfiniteData } from "react-query";
+import React from "react";
 import { styled as MuiStyled } from "@mui/material";
 import { PropagateLoader } from "react-spinners";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { RootState, wrapper } from "@/store/store";
 import { useAppDispatch, useAppSelector } from "@/hook/useRedux";
 import { saveSelectMovie } from "@/store/modules/selectData";
@@ -19,7 +10,6 @@ export default function SearchResults(props: SearchResultsProps) {
   const { id, title, genre_ids } = useAppSelector((state) => state.movieSlice);
   const dispatch = useAppDispatch();
   const selectMovie = useAppSelector((state: RootState) => state.movieSlice);
-  console.log(id, title, genre_ids);
 
   return (
     <React.Fragment>
@@ -66,19 +56,6 @@ export default function SearchResults(props: SearchResultsProps) {
     </React.Fragment>
   );
 }
-
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) =>
-    async ({ params }) => {
-      // 초기 상태를 설정할 수 있고, 커스텀 로직을 추가할 수 있다.
-      // 서버 단에서 Redux 액션을 수행할 수 있다.
-      store.dispatch(saveSelectMovie({ id: 1, title: "", genre_ids: [12] }));
-      console.log("State on server", store.getState());
-      return {
-        props: {},
-      };
-    }
-);
 
 const DataBox = MuiStyled("ul")({
   width: "calc(100% - 10px)",
