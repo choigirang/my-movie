@@ -1,5 +1,7 @@
 import { SelectMovieData } from "@/type/movie";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { HYDRATE } from "next-redux-wrapper";
+import { RootState } from "../store";
 
 const initialState: SelectMovieData = {
   id: 1,
@@ -15,22 +17,18 @@ export const selectMovieSlice = createSlice({
       state: SelectMovieData,
       action: PayloadAction<SelectMovieData>
     ) => {
-      state.id = action.payload.id;
-      state.title = action.payload.title;
-      state.genre_ids = action.payload.genre_ids;
+      const { id, title, genre_ids } = action.payload;
+      return { ...state, id, title, genre_ids };
     },
     resetSelect: () => initialState,
   },
 
-  // /** 페이지 이동 시 상태 초기화가 필요한 경우 추가해야 함 */
-  // extraReducers: {
-  //   [HYDRATE]: (state, action) => {
-  //     return {
-  //       ...state
-  //       // ...action.payload.counter
-  //     };
-  //   }
-  // }
+  extraReducers(builder) {
+    builder.addCase<typeof HYDRATE, PayloadAction<RootState, typeof HYDRATE>>(
+      HYDRATE,
+      (state, { payload }) => ({ ...state, ...payload.page })
+    );
+  },
 });
 
 export const { saveSelectMovie, resetSelect } = selectMovieSlice.actions;
