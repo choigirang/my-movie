@@ -11,7 +11,6 @@ import {
   documentGetInitialProps,
 } from "@mui/material-nextjs/v13-pagesRouter";
 import Header from "@/components/common/Header";
-import ReduxProvider from "../store/ReduxProvider";
 
 export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
   return (
