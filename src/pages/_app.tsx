@@ -8,7 +8,7 @@ import { createCustomTheme } from "@/styles/theme";
 import PropTypes from "prop-types";
 import { persistor, store, wrapper } from "@/store/store";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/lib/integration/react";
+import { PersistGate } from "redux-persist/integration/react";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
