@@ -1,12 +1,13 @@
 import { SelectMovieData } from "@/type/movie";
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import { RootState } from "../store";
+import { RehydrateAction } from "redux-persist";
 
-const initialState: SelectMovieData = {
+export const initialState: SelectMovieData = {
   id: 1,
-  title: undefined,
-  genre_ids: undefined,
+  title: "",
+  genre_ids: [],
 };
 
 export const selectMovieSlice = createSlice({
@@ -16,19 +17,21 @@ export const selectMovieSlice = createSlice({
     saveSelectMovie: (
       state: SelectMovieData,
       action: PayloadAction<SelectMovieData>
-    ) => {
-      const { id, title, genre_ids } = action.payload;
-      return { ...state, id, title, genre_ids };
-    },
+    ) => ({
+      ...state,
+      id: action.payload.id,
+      title: action.payload.title,
+      genre_ids: action.payload.genre_ids,
+    }),
     resetSelect: () => initialState,
   },
 
-  extraReducers(builder) {
-    builder.addCase<typeof HYDRATE, PayloadAction<RootState, typeof HYDRATE>>(
-      HYDRATE,
-      (state, { payload }) => ({ ...state, ...payload.page })
-    );
-  },
+  // extraReducers(builder) {
+  //   builder.addCase(saveSelectMovie, (state, action) => ({
+  //     ...state,
+  //     ...action.payload,
+  //   }));
+  // },
 });
 
 export const { saveSelectMovie, resetSelect } = selectMovieSlice.actions;
