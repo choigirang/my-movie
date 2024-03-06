@@ -7,21 +7,25 @@ import { RehydrateAction } from "redux-persist";
 export const initialState: SelectMovieData = {
   id: 1,
   title: "",
+  original_title: "",
   genre_ids: [],
+  overview: "",
+  poster_path: "",
+  vote_average: 0,
+  release_date: "",
+  date: "",
 };
 
-export const selectMovieSlice = createSlice({
+export const movieSelectSlice = createSlice({
   name: "movieSlice",
   initialState,
   reducers: {
-    saveSelectMovie: (
+    selectMovie: (
       state: SelectMovieData,
       action: PayloadAction<SelectMovieData>
     ) => ({
       ...state,
-      id: action.payload.id,
-      title: action.payload.title,
-      genre_ids: action.payload.genre_ids,
+      ...action.payload,
     }),
     resetSelect: () => initialState,
   },
@@ -34,5 +38,5 @@ export const selectMovieSlice = createSlice({
   // },
 });
 
-export const { saveSelectMovie, resetSelect } = selectMovieSlice.actions;
-export default selectMovieSlice;
+export const { selectMovie, resetSelect } = movieSelectSlice.actions;
+export default movieSelectSlice;
