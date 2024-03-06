@@ -5,17 +5,30 @@ import {
   InfiniteQueryObserverResult,
 } from "react-query";
 
+export interface SelectMovieData {
+  id: number | undefined;
+  title: string | undefined;
+  original_title: string;
+  genre_ids: Array<number> | undefined;
+  overview: string;
+  poster_path: string;
+  vote_average: number;
+  release_date: string;
+  date: string;
+}
+
+export type SaveMovieInfo = Omit<SelectMovieData, "date">;
+
+export type SavedMovieData = {
+  [key: string]: Array<SaveMovieInfo>;
+};
+
 export interface MovieDetailType extends SelectMovieData {
   adult: boolean;
   backdrop_path: string;
   original_language: string;
-  original_title: string;
-  overview: string;
   popularity: number;
-  poster_path: string;
-  release_date: string;
   video: boolean;
-  vote_average: number;
   vote_count: number;
 }
 
@@ -32,10 +45,5 @@ export type SearchResultsProps = {
     options?: FetchNextPageOptions | undefined
   ) => Promise<InfiniteQueryObserverResult<any, unknown>>;
   isFetchingNextPage: boolean;
+  setShowResult: Dispatch<SetStateAction<boolean>>;
 };
-
-export interface SelectMovieData {
-  id: number | undefined;
-  title: string | undefined;
-  genre_ids: Array<number> | undefined;
-}
