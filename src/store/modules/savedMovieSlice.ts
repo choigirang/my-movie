@@ -5,7 +5,7 @@ const initialState: SavedMovieData = {
   "2024-3-6": [
     {
       id: 1,
-      title: "",
+      title: "최기랑의 제작 영화",
       original_title: "",
       genre_ids: [],
       overview: "",
