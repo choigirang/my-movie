@@ -2,6 +2,12 @@ import React, { Dispatch, SetStateAction } from "react";
 import AlertBg from "../common/AlertBg";
 import Alert from "../common/Alert";
 import SearchMovie from "./SearchMovie";
+import SelectMovie from "./SelectMovie";
+
+const style = {
+  display: "grid",
+  gridTemplateRows: "10% 90%",
+};
 
 export default function AddMovie({
   addCalendar,
@@ -10,8 +16,9 @@ export default function AddMovie({
 }) {
   return (
     <AlertBg setState={addCalendar}>
-      <Alert setState={addCalendar}>
-        <SearchMovie></SearchMovie>
+      <Alert setState={addCalendar} customStyle={style}>
+        <SearchMovie />
+        <SelectMovie />
       </Alert>
     </AlertBg>
   );
