@@ -2,14 +2,21 @@ import { MovieDetailType, SearchResultsProps } from "@/type/movie";
 import React from "react";
 import { styled as MuiStyled } from "@mui/material";
 import { PropagateLoader } from "react-spinners";
-import { RootState, wrapper } from "@/store/store";
 import { useAppDispatch, useAppSelector } from "@/hook/useRedux";
-import { saveSelectMovie } from "@/store/modules/selectData";
+import { selectMovie } from "@/store/modules/movieSelectSlice";
 
 export default function SearchResults(props: SearchResultsProps) {
-  const { id, title, genre_ids } = useAppSelector((state) => state.movieSlice);
   const dispatch = useAppDispatch();
-  const selectMovie = useAppSelector((state: RootState) => state.movieSlice);
+
+  const handleDispatch = (movie: MovieDetailType) => {
+    dispatch(
+      selectMovie({
+        ...movie,
+      })
+    );
+    // 미리보기 닫기
+    props.setShowResult(false);
+  };
 
   return (
     <React.Fragment>
@@ -20,18 +27,7 @@ export default function SearchResults(props: SearchResultsProps) {
           {props.data &&
             props.data.pages.map((page) =>
               page.map((movie) => (
-                <PrevData
-                  key={movie.id}
-                  onClick={() =>
-                    dispatch(
-                      saveSelectMovie({
-                        id: movie.id,
-                        title: movie.title,
-                        genre_ids: movie.genre_ids,
-                      })
-                    )
-                  }
-                >
+                <PrevData key={movie.id} onClick={() => handleDispatch(movie)}>
                   {movie.title}
                 </PrevData>
               ))
@@ -71,6 +67,7 @@ const DataBox = MuiStyled("ul")({
   gap: 10,
   borderBottomLeftRadius: "5px 5px",
   borderBottomRightRadius: "5px 5px",
+  zIndex: 999,
 });
 
 const PrevData = MuiStyled("li")({
