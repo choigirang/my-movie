@@ -28,8 +28,6 @@ export default function Week({
 
   const addMovie = (movies: SaveMovieInfo) => {
     const { title, genre_ids, vote_average } = movies;
-    console.log("movies", movies);
-
     return <div>{title}</div>;
   };
 

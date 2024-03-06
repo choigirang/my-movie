@@ -9,7 +9,6 @@ import { useAppSelector } from "@/hook/useRedux";
 
 export default function MovieList() {
   const { id, title, genre_ids } = useAppSelector((state) => state.movieSlice);
-  console.log(id, title, genre_ids);
   const [detailData, setDetailData] = useState<MovieDetailType | undefined>();
   const target = useRef<HTMLDivElement>(null);
   // useInfiniteQuery hooks
