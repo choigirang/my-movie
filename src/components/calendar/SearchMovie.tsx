@@ -13,15 +13,21 @@ import useMovieData from "@/hook/useMovieData";
 import { MovieDetailType } from "@/type/movie";
 
 export default function SearchMovie() {
+  const [showResult, setShowResult] = useState(false);
   const [keyword, setKeyword, setInit] = useInputs("");
   const [apiKeyword, setApiKeyword] = useState<string | number>("");
   const { data, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useMovieData(apiKeyword);
 
+  useEffect(() => {
+    if (apiKeyword !== keyword) setShowResult(false);
+  }, [apiKeyword, keyword]);
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setApiKeyword(keyword);
     refetch();
+    setShowResult((prev) => !prev);
   };
 
   const props = {
@@ -31,6 +37,7 @@ export default function SearchMovie() {
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
+    setShowResult,
   };
 
   return (
@@ -38,7 +45,7 @@ export default function SearchMovie() {
       <Wrapper onSubmit={(e) => handleSubmit(e)}>
         <InputWithData>
           <Input aria-label="search-movie" onChange={setKeyword} />
-          <SearchResults {...props} />
+          {showResult && <SearchResults {...props} />}
         </InputWithData>
         <Btn type="submit">검색</Btn>
       </Wrapper>
@@ -51,16 +58,17 @@ const Wrapper = MuiStyled("form")({
   gridTemplateColumns: "80% 20%",
   gap: "16px",
   padding: "20px",
+  width: "100%",
 });
 
 const InputWithData = MuiStyled("div")({
   position: "relative",
   width: "100%",
-  height: 50,
+  height: "100%",
 });
 
 const Btn = MuiStyled(Button)({
-  height: "100%",
+  height: 50,
 });
 
 const Input = MuiStyled("input")({
