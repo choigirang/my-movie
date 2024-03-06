@@ -26,7 +26,7 @@ export default function DetailDes(movieDetail: MovieInfoProps) {
       {/* 설명 */}
       <Des>{movieDetail.overview}</Des>
       {/* 캘린더 추가 */}
-      <AddCalendarBtn />
+      <AddCalendarBtn {...movieDetail} />
     </GridCustom>
   );
 }
