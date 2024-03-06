@@ -1,14 +1,12 @@
-import {
-  startOfMonth,
-  getDay,
-  getDaysInMonth,
-} from "date-fns";
+import { startOfMonth, getDay, getDaysInMonth } from "date-fns";
 import React, { useState } from "react";
+import { useAppSelector } from "./useRedux";
 
 const DAYS_IN_WEEK = 7;
 
-const useCalendar = () => {
+export default function useCalendar() {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
+  const savedMovieData = useAppSelector((state) => state.savedMovieSlice);
 
   const generateCalendar = (date: Date) => {
     const firstDayOfMonth = startOfMonth(date);
@@ -43,8 +41,17 @@ const useCalendar = () => {
     // 주 단위로 묶기
     const calendar = [];
     for (let i = 0; i < calendarArray.length; i += DAYS_IN_WEEK) {
-      calendar.push(calendarArray.slice(i, i + DAYS_IN_WEEK));
+      const month = currentDate.getMonth() + 1;
+      const week = calendarArray.slice(i, i + DAYS_IN_WEEK).map((day) => {
+        if (day === 0) return 0;
+        const date = `${currentDate.getFullYear()}-${month}-${day}`;
+        const movies = savedMovieData[date] || [];
+        return { date, movies };
+      });
+      calendar.push(week);
     }
+
+    console.log(calendar);
 
     return calendar;
   };
@@ -54,5 +61,4 @@ const useCalendar = () => {
     currentDate: currentDate,
     setCurrentDate: setCurrentDate,
   };
-};
-export default useCalendar;
+}
