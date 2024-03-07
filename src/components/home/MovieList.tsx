@@ -8,8 +8,8 @@ import MovieDetail from "./MovieDetail";
 import { useAppSelector } from "@/hook/useRedux";
 
 export default function MovieList() {
-  const { id, title, genre_ids } = useAppSelector((state) => state.movieSlice);
-  const [detailData, setDetailData] = useState<MovieDetailType | undefined>();
+  const selectedMovie = useAppSelector((state) => state.movieSlice);
+  const [openDetail, setOpenDetail] = useState(false);
   const target = useRef<HTMLDivElement>(null);
   // useInfiniteQuery hooks
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -42,21 +42,17 @@ export default function MovieList() {
   return (
     <Grid container spacing={4}>
       {/* 영화 상세 정보 팝업 */}
-      {detailData && (
+      {selectedMovie && (
         <MovieDetail
-          {...detailData}
-          setDetailData={setDetailData}
+          {...selectedMovie}
+          setOpenDetail={setOpenDetail}
         ></MovieDetail>
       )}
       {data &&
         data.pages.map((page, pageIndex) => (
           <React.Fragment key={pageIndex}>
             {page.map((movie: MovieDetailType) => (
-              <MovieInfo
-                key={movie.id}
-                {...movie}
-                setDetailData={setDetailData}
-              />
+              <MovieInfo key={movie.id} {...movie} />
             ))}
           </React.Fragment>
         ))}
