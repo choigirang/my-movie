@@ -5,7 +5,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { useAppDispatch } from "@/hook/useRedux";
 import { resetSelect } from "@/store/modules/movieSelectSlice";
 
-export default function Alert({ children, setState, customStyle }: AlertProps) {
+export default function Alert({ children, setState, customstyle }: AlertProps) {
   const dispatch = useAppDispatch();
 
   const resetAlertWithMovieData = () => {
@@ -19,7 +19,7 @@ export default function Alert({ children, setState, customStyle }: AlertProps) {
       spacing={1200 <= window.innerWidth ? 2 : 1}
       columnSpacing={1200 <= window.innerWidth ? 1 : 2}
       onClick={(e) => e.stopPropagation()}
-      customStyle={customStyle}
+      customstyle={customstyle}
     >
       {children}
       {/* 닫기 버튼 */}
@@ -31,10 +31,11 @@ export default function Alert({ children, setState, customStyle }: AlertProps) {
   );
 }
 
-const GridCustom = MuiStyled(Grid)<{ customStyle?: CustomStyle }>(
-  ({ customStyle }) => ({
-    flexDirection: "row",
+const GridCustom = MuiStyled(Grid)<{ customstyle?: CustomStyle }>(
+  ({ customstyle }) => ({
+    flexDirection: "column",
     width: "70%",
+    maxWidth: 800,
     height: "90%",
     display: "flex",
     backgroundColor: "rgb(24, 24, 24)",
@@ -42,8 +43,8 @@ const GridCustom = MuiStyled(Grid)<{ customStyle?: CustomStyle }>(
     position: "relative",
     padding: "20px",
 
-    ...(customStyle && {
-      ...customStyle,
+    ...(customstyle && {
+      ...customstyle,
     }),
 
     /* 타블렛 */
