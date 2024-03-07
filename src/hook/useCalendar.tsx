@@ -51,8 +51,6 @@ export default function useCalendar() {
       calendar.push(week);
     }
 
-    console.log(calendar);
-
     return calendar;
   };
 
