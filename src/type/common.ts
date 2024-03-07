@@ -13,5 +13,5 @@ export interface CustomStyle {
 export interface AlertProps {
   children?: ReactNode;
   setState: Dispatch<SetStateAction<any>>;
-  customStyle?: CustomStyle;
+  customstyle?: CustomStyle;
 }
