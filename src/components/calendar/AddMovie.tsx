@@ -3,10 +3,10 @@ import AlertBg from "../common/AlertBg";
 import Alert from "../common/Alert";
 import SearchMovie from "./SearchMovie";
 import SelectMovie from "./SelectMovie";
+import SavedMovieData from "./SavedMovieData";
 
 const style = {
   display: "grid",
-  gridTemplateRows: "10% 90%",
 };
 
 export default function AddMovie({
@@ -16,9 +16,10 @@ export default function AddMovie({
 }) {
   return (
     <AlertBg setState={addCalendar}>
-      <Alert setState={addCalendar} customStyle={style}>
+      <Alert setState={addCalendar} customstyle={style}>
         <SearchMovie />
         <SelectMovie />
+        <SavedMovieData />
       </Alert>
     </AlertBg>
   );
