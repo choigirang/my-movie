@@ -41,21 +41,21 @@ export default function SearchMovie() {
   };
 
   return (
-    <React.Fragment>
-      <Wrapper onSubmit={(e) => handleSubmit(e)}>
-        <InputWithData>
-          <Input aria-label="search-movie" onChange={setKeyword} />
-          {showResult && <SearchResults {...props} />}
-        </InputWithData>
-        <Btn type="submit">검색</Btn>
-      </Wrapper>
-    </React.Fragment>
+    <Wrapper onSubmit={(e) => handleSubmit(e)}>
+      <InputWithData>
+        <Input aria-label="search-movie" onChange={setKeyword} />
+        {showResult && <SearchResults {...props} />}
+      </InputWithData>
+      <Btn type="submit">
+        <span>검색</span>
+      </Btn>
+    </Wrapper>
   );
 }
 
 const Wrapper = MuiStyled("form")({
-  display: "grid",
-  gridTemplateColumns: "80% 20%",
+  display: "flex",
+  justifyContent: "space-between",
   gap: "16px",
   padding: "20px",
   width: "100%",
@@ -68,7 +68,14 @@ const InputWithData = MuiStyled("div")({
 });
 
 const Btn = MuiStyled(Button)({
+  width: "100%",
+  maxWidth: 100,
   height: 50,
+  display: "flex",
+
+  span: {
+    width: "100%",
+  },
 });
 
 const Input = MuiStyled("input")({
