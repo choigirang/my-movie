@@ -9,7 +9,7 @@ export interface SelectMovieData {
   id: number | undefined;
   title: string | undefined;
   original_title: string;
-  genre_ids: Array<number> | undefined;
+  genre_ids: Array<number>;
   overview: string;
   poster_path: string;
   vote_average: number;
