@@ -32,10 +32,6 @@ export interface MovieDetailType extends SelectMovieData {
   vote_count: number;
 }
 
-export interface MovieInfoProps extends MovieDetailType {
-  setDetailData: Dispatch<SetStateAction<undefined | MovieDetailType>>;
-}
-
 export type SearchResultsProps = {
   keyword: string | number;
   apiKeyword: string | number;

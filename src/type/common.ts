@@ -12,6 +12,5 @@ export interface CustomStyle {
 // 공통 Alert 컴포넌트 props
 export interface AlertProps {
   children?: ReactNode;
-  setState: Dispatch<SetStateAction<any>>;
-  customstyle?: CustomStyle;
+  addCalendar?: Dispatch<SetStateAction<boolean>>;
 }
