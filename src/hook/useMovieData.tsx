@@ -1,21 +1,34 @@
 import { api } from "@/api/api";
 import { MovieDetailType } from "@/type/movie";
-import React from "react";
-import { useInfiniteQuery, useQuery } from "react-query";
+import React, { useState } from "react";
+import { useInfiniteQuery } from "react-query";
 
-export default function useMovieData() {
+export default function useMovieData(keyword?: string | number) {
+  const [totalPage, setTotalPage] = useState<number>(1);
+
   async function fetchMovies({ pageParam = 1 }: { pageParam?: number }) {
-    const res = await api.get(``, {
-      params: {
-        page: pageParam,
-      },
+    let queryParams: any = { page: pageParam };
+    if (keyword) queryParams.query = keyword;
+
+    const res = await api.get(`${keyword ? "search/movie" : "movie/popular"}`, {
+      params: queryParams,
     });
+
+    setTotalPage(res.data.total_pages);
     return res.data.results;
   }
 
-  return useInfiniteQuery("movies", fetchMovies, {
+  function resultPage(
+    lastPage: Array<MovieDetailType[] | undefined>,
+    allPage: Array<Array<MovieDetailType[] | undefined>>
+  ) {
+    return lastPage.length === 20 && totalPage > allPage.length;
+  }
+
+  return useInfiniteQuery(["movies", keyword], fetchMovies, {
+    enabled: keyword !== "",
     getNextPageParam: (lastPage, allPages) => {
-      return allPages.length + 1;
+      return resultPage(lastPage, allPages) ? allPages.length + 1 : null;
     },
   });
 }

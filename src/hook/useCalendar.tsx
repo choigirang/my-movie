@@ -1,22 +1,12 @@
-import {
-  startOfMonth,
-  getDay,
-  getDaysInMonth,
-  subDays,
-  addDays,
-  subMonths,
-} from "date-fns";
+import { startOfMonth, getDay, getDaysInMonth } from "date-fns";
 import React, { useState } from "react";
+import { useAppSelector } from "./useRedux";
 
-const DATE_MONTH_FIXER = 1;
-const CALENDER_LENGTH = 35;
-const DEFAULT_TRASH_VALUE = 0;
-const DAY_OF_WEEK = 7;
 const DAYS_IN_WEEK = 7;
 
-const useCalendar = () => {
+export default function useCalendar() {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const totalMonthDays = getDaysInMonth(currentDate);
+  const savedMovieData = useAppSelector((state) => state.savedMovieSlice);
 
   const generateCalendar = (date: Date) => {
     const firstDayOfMonth = startOfMonth(date);
@@ -24,9 +14,7 @@ const useCalendar = () => {
     const totalDaysInMonth = getDaysInMonth(date);
 
     // 이전 달의 마지막 날짜들 추가
-    const prevMonthDays = Array.from({ length: startDayOfWeek }, (_, i) =>
-      subDays(firstDayOfMonth, startDayOfWeek - i).getDate()
-    );
+    const prevMonthDays = Array.from({ length: startDayOfWeek }, (_, i) => 0);
 
     // 현재 달의 날짜들 추가
     const currentMonthDays = Array.from(
@@ -40,7 +28,7 @@ const useCalendar = () => {
       ((prevMonthDays.length + currentMonthDays.length) % DAYS_IN_WEEK);
     const nextMonthDays = Array.from(
       { length: nextMonthDaysCount },
-      (_, i) => i + 1
+      (_, i) => 0
     );
 
     // 캘린더 배열 생성
@@ -53,7 +41,14 @@ const useCalendar = () => {
     // 주 단위로 묶기
     const calendar = [];
     for (let i = 0; i < calendarArray.length; i += DAYS_IN_WEEK) {
-      calendar.push(calendarArray.slice(i, i + DAYS_IN_WEEK));
+      const month = currentDate.getMonth() + 1;
+      const week = calendarArray.slice(i, i + DAYS_IN_WEEK).map((day) => {
+        if (day === 0) return 0;
+        const date = `${currentDate.getFullYear()}-${month}-${day}`;
+        const movies = savedMovieData[date] || [];
+        return { date, movies };
+      });
+      calendar.push(week);
     }
 
     return calendar;
@@ -64,5 +59,4 @@ const useCalendar = () => {
     currentDate: currentDate,
     setCurrentDate: setCurrentDate,
   };
-};
-export default useCalendar;
+}

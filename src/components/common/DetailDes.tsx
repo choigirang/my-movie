@@ -37,9 +37,8 @@ const GridCustom = MuiStyled(Grid)({
   alignItems: "start",
   position: "relative",
   color: "white",
-  padding: "0 24px",
-  paddingTop: "calc((100% - 500px)/2) !important", // 위 여백 설정
-  paddingBottom: "calc((100% - 500px)/2)", // 아래 여백 설정
+  paddingTop: "50px !important", // 위 여백 설정
+  paddingBottom: "50px", // 아래 여백 설정
   gap: 20,
 });
 

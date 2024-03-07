@@ -13,7 +13,6 @@ import {
 import Header from "@/components/common/Header";
 
 export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
-
   return (
     <>
       <Head>

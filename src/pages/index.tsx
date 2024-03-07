@@ -11,6 +11,7 @@ import {
 import Head from "next/head";
 import ArrowCircleLeftSharpIcon from "@mui/icons-material/ArrowCircleLeftSharp";
 import useMoveScroll from "@/hook/useScrollTop";
+import { wrapper } from "@/store/store";
 
 export default function Home() {
   // const { toggleColorMode } = useThemeHandler();
