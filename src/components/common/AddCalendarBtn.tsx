@@ -1,5 +1,5 @@
 import { Button, styled as MuiStyled } from "@mui/material";
-import React, { ChangeEvent, EventHandler, useState } from "react";
+import React, { ChangeEvent, EventHandler, useEffect, useState } from "react";
 import EditCalendarIcon from "@mui/icons-material/EditCalendar";
 import { MovieInfoProps } from "@/type/movie";
 import { useAppDispatch, useAppSelector } from "@/hook/useRedux";
@@ -10,6 +10,10 @@ export default function AddCalendarBtn() {
   const [date, setDate] = useState("");
   const dispatch = useAppDispatch();
   const select = useAppSelector((state) => state.movieSlice);
+
+  useEffect(() => {
+    setDate(select.date);
+  }, []);
 
   const handleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
     const splitingDate = e.target.value.split("-");
@@ -29,10 +33,25 @@ export default function AddCalendarBtn() {
     dispatch(resetSelect());
   };
 
+  const changeDateForm = () => {
+    const dateString = select.date;
+    const dateParts = dateString.split("-");
+    const year = dateParts[0];
+    const month = dateParts[1].length === 1 ? "0" + dateParts[1] : dateParts[1];
+    const day = dateParts[2].length === 1 ? "0" + dateParts[2] : dateParts[2];
+    const formattedDate = `${year}-${month}-${day}`;
+
+    return formattedDate;
+  };
+
   return (
     <Container>
       {/* !클릭한 날짜 전달하기  */}
-      <input type="date" onChange={handleDateChange} value={"2024-05-03"} />
+      <input
+        type="date"
+        onChange={handleDateChange}
+        value={select.date && changeDateForm()}
+      />
       <CustomBtn
         startIcon={<EditCalendarIcon />}
         variant="contained"
