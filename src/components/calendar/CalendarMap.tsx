@@ -45,7 +45,7 @@ export default function CalendarMap() {
           <Week key={key} days={week} clickDay={setAddCalendar}></Week>
         ))}
       </WeekContainer>
-      {addCalender && <AddMovie addCalendar={setAddCalendar}></AddMovie>}
+      {addCalender && <AddMovie></AddMovie>}
     </Wrapper>
   );
 }
