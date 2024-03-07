@@ -19,7 +19,6 @@ export const customComponentsStyle = {
     paddingLeft: 0,
   }),
   ...componentsStyle("MuiGrid", {
-    width: "100%",
     marginLeft: 0,
     marginTop: 0,
     "& .MuiGrid-item": {
@@ -41,7 +40,7 @@ export const customComponentsStyle = {
 
     "& .MuiButton-startIcon": {
       margin: 0,
-      padding: 5
+      padding: 5,
     },
   }),
 };
