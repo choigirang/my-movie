@@ -1,17 +1,22 @@
-import { MovieDetailType, MovieInfoProps } from "@/type/movie";
-import React, { EventHandler, useState } from "react";
-import Container from "@mui/material/Container";
-import DetailDes from "../common/DetailDes";
+import { MovieDetailType } from "@/type/movie";
+import React, { EventHandler, SetStateAction, useState } from "react";
 import AlertBg from "../common/AlertBg";
 import Alert from "../common/Alert";
 import ImageWithMovieDetail from "../common/ImageWithMovieDetail";
+import { useAppSelector } from "@/hook/useRedux";
 
-export default function MovieDetail(movieDetail: MovieInfoProps) {
+export default function MovieDetail() {
+  const selectedMovie = useAppSelector((state) => state.movieSlice);
+
   return (
-    <AlertBg setState={movieDetail.setDetailData}>
-      <Alert setState={movieDetail.setDetailData}>
-        <ImageWithMovieDetail {...movieDetail} />
-      </Alert>
-    </AlertBg>
+    <React.Fragment>
+      {selectedMovie.title && (
+        <AlertBg>
+          <Alert>
+            <ImageWithMovieDetail />
+          </Alert>
+        </AlertBg>
+      )}
+    </React.Fragment>
   );
 }

@@ -1,9 +1,13 @@
 import React, { Dispatch, ReactNode } from "react";
 import { styled as MuiStyled } from "@mui/material";
 import { AlertProps } from "@/type/common";
+import { useAppDispatch } from "@/hook/useRedux";
+import { resetSelect } from "@/store/modules/movieSelectSlice";
 
-export default function AlertBg({ setState, children }: AlertProps) {
-  return <Bg onClick={() => setState(undefined)}>{children}</Bg>;
+export default function AlertBg({ children }: AlertProps) {
+  const dispatch = useAppDispatch();
+
+  return <Bg onClick={() => dispatch(resetSelect())}>{children}</Bg>;
 }
 
 const Bg = MuiStyled("div")(({}) => ({

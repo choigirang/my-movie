@@ -3,7 +3,6 @@ import { Button, Grid, styled as MuiStyled } from "@mui/material";
 import { ClipLoader, MoonLoader, PropagateLoader } from "react-spinners";
 import Image from "next/image";
 import DetailDes from "./DetailDes";
-import { MovieInfoProps } from "@/type/movie";
 import useResizeDetail from "@/hook/useResizeDetail";
 import { useAppSelector } from "@/hook/useRedux";
 
@@ -46,7 +45,6 @@ export default function ImageWithMovieDetail() {
 
 const ImageBox = MuiStyled(Grid)({
   position: "relative",
-  display: "flex",
   alignItems: "center",
   justifyContent: "center",
 

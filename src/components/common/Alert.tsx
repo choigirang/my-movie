@@ -5,11 +5,11 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { useAppDispatch } from "@/hook/useRedux";
 import { resetSelect } from "@/store/modules/movieSelectSlice";
 
-export default function Alert({ children, setState, customstyle }: AlertProps) {
+export default function Alert({ children }: AlertProps) {
   const dispatch = useAppDispatch();
+  const path = window.location.pathname === "/calendar";
 
   const resetAlertWithMovieData = () => {
-    setState(false);
     dispatch(resetSelect());
   };
 
@@ -19,7 +19,7 @@ export default function Alert({ children, setState, customstyle }: AlertProps) {
       spacing={1200 <= window.innerWidth ? 2 : 1}
       columnSpacing={1200 <= window.innerWidth ? 1 : 2}
       onClick={(e) => e.stopPropagation()}
-      customstyle={customstyle}
+      path={path}
     >
       {children}
       {/* 닫기 버튼 */}
@@ -31,34 +31,31 @@ export default function Alert({ children, setState, customstyle }: AlertProps) {
   );
 }
 
-const GridCustom = MuiStyled(Grid)<{ customstyle?: CustomStyle }>(
-  ({ customstyle }) => ({
-    flexDirection: "column",
-    width: "70%",
-    maxWidth: 800,
-    height: "90%",
+const GridCustom = MuiStyled(Grid)<{ path: boolean }>(({ path }) => ({
+  flexDirection: "column",
+  width: "70%",
+  maxWidth: 800,
+  height: "90%",
+  display: path ? "flex" : "grid",
+  gridTemplateColumns: "40% 60%",
+  gap: 20,
+  backgroundColor: "rgb(24, 24, 24)",
+  borderRadius: "10px",
+  position: "relative",
+  padding: "20px",
+
+  /* 타블렛 */
+  "@media screen and (min-width: 768px) and (max-width: 1200px)": {
     display: "flex",
-    backgroundColor: "rgb(24, 24, 24)",
-    borderRadius: "10px",
-    position: "relative",
-    padding: "20px",
-
-    ...(customstyle && {
-      ...customstyle,
-    }),
-
-    /* 타블렛 */
-    "@media screen and (min-width: 768px) and (max-width: 1200px)": {
-      flexDirection: "column",
-      overflow: "scroll",
-      gap: 20,
-      "& > * + *": {
-        // 첫 번째 자식 이후의 모든 자식에 대해
-        marginTop: 0, // 상단 간격을 없애줌
-      },
+    flexDirection: "column",
+    overflow: "scroll",
+    gap: 20,
+    "& > * + *": {
+      // 첫 번째 자식 이후의 모든 자식에 대해
+      marginTop: 0, // 상단 간격을 없애줌
     },
-  })
-);
+  },
+}));
 
 const CloseBtn = MuiStyled(Button)({
   position: "absolute",

@@ -1,11 +1,14 @@
-import { MovieDetailType, MovieInfoProps } from "@/type/movie";
+import { MovieDetailType } from "@/type/movie";
 import { Grid, styled as MuiStyled } from "@mui/material";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import MovieImg from "./MovieImg";
+import { useAppDispatch } from "@/hook/useRedux";
+import { selectMovie } from "@/store/modules/movieSelectSlice";
 
-export default function MovieInfo({ setDetailData, ...each }: MovieInfoProps) {
+export default function MovieInfo(each: MovieDetailType) {
   const [hover, setHover] = useState(false);
   const { title, poster_path: imgUrl, vote_average: vote } = each;
+  const dispatch = useAppDispatch();
 
   return (
     <Grid
@@ -22,7 +25,7 @@ export default function MovieInfo({ setDetailData, ...each }: MovieInfoProps) {
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      onClick={() => setDetailData(each)}
+      onClick={() => dispatch(selectMovie({ ...each }))}
     >
       <MovieImg
         $mouseHover={hover}

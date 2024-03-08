@@ -1,10 +1,12 @@
-import { MovieInfoProps } from "@/type/movie";
 import { Grid, styled as MuiStyled } from "@mui/material";
 import React from "react";
 import StarSharpIcon from "@mui/icons-material/StarSharp";
 import AddCalendarBtn from "./AddCalendarBtn";
+import { useAppSelector } from "@/hook/useRedux";
 
-export default function DetailDes(movieDetail: MovieInfoProps) {
+export default function DetailDes() {
+  const seletedMovie = useAppSelector((state) => state.movieSlice);
+
   return (
     <GridCustom
       item
@@ -13,18 +15,18 @@ export default function DetailDes(movieDetail: MovieInfoProps) {
     >
       {/* 타이틀 */}
       <TitleBox>
-        <h1>{movieDetail.title}</h1>
-        <h2>{movieDetail.original_title}</h2>
+        <h1>{seletedMovie.title}</h1>
+        <h2>{seletedMovie.original_title}</h2>
       </TitleBox>
       {/* 개봉일 */}
-      <Date>{movieDetail.release_date}</Date>
+      <Date>{seletedMovie.release_date}</Date>
       {/* 별점 */}
       <Average>
         <StarSharpIcon sx={{ fontSize: 24, color: "yellow" }}></StarSharpIcon>
-        <span>{movieDetail.vote_average.toFixed(1)}</span>
+        <span>{seletedMovie.vote_average.toFixed(1)}</span>
       </Average>
       {/* 설명 */}
-      <Des>{movieDetail.overview}</Des>
+      <Des>{seletedMovie.overview}</Des>
       {/* 캘린더 추가 */}
       <AddCalendarBtn />
     </GridCustom>
@@ -32,6 +34,7 @@ export default function DetailDes(movieDetail: MovieInfoProps) {
 }
 
 const GridCustom = MuiStyled(Grid)({
+  width: "100%",
   display: "flex",
   justifyContent: "start",
   alignItems: "start",
