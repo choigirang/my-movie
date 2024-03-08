@@ -10,11 +10,12 @@ import movieSelectSlice from "./modules/movieSelectSlice";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import savedMovieSlice from "./modules/savedMovieSlice";
+import userSlice from "./modules/userSlice";
 
 const persistConfig = {
   key: "root",
   storage,
-  whiteList: ["savedMovieSlice"],
+  whiteList: ["savedMovieSlice", "userSlice"],
 };
 
 const reducer = (state: any, action: PayloadAction<any>) => {
@@ -29,6 +30,7 @@ const reducer = (state: any, action: PayloadAction<any>) => {
   return combineReducers({
     movieSlice: movieSelectSlice.reducer,
     savedMovieSlice: savedMovieSlice.reducer,
+    userSlice: userSlice.reducer,
   })(state, action);
 };
 
