@@ -10,7 +10,6 @@ import {
   DocumentHeadTagsProps,
   documentGetInitialProps,
 } from "@mui/material-nextjs/v13-pagesRouter";
-import Header from "@/components/common/Header";
 
 export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
   return (
@@ -23,7 +22,6 @@ export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
         />
       </Head>
       <body>
-        <Header />
         <Main />
         <NextScript />
       </body>

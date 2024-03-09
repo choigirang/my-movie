@@ -8,7 +8,8 @@ import { createCustomTheme } from "@/styles/theme";
 import PropTypes from "prop-types";
 import { persistor, store, wrapper } from "@/store/store";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
+import { PersistGate } from "redux-persist/lib/integration/react";
+import Header from "@/components/common/Header";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,6 +32,8 @@ function App({ Component, ...pageProps }: AppProps) {
           <StyledEngineProvider injectFirst>
             {/* <ColorModeProvider> */}
             <ThemeProvider theme={theme}>
+              <Header />
+
               <Component {...pageProps} />
             </ThemeProvider>
             {/* </ColorModeProvider> */}
