@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-type LoginInitial = {
+export type LoginInitial = {
   id: string;
   nickname: string;
   image: string;
@@ -20,8 +20,9 @@ export const userSlice = createSlice({
       ...state,
       ...action.payload,
     }),
+    logout: () => initialState,
   },
 });
 
-export const { login } = userSlice.actions;
+export const { login, logout } = userSlice.actions;
 export default userSlice;
