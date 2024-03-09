@@ -20,11 +20,7 @@ const loginBtn = {
 };
 
 export default function index() {
-  const { kakaoUserToken, kakaoUserInfoCode, code } = useSocialLogin();
-
-  useEffect(() => {
-    if (code) kakaoUserInfoCode();
-  }, []);
+  const { kakaoUserToken } = useSocialLogin();
 
   return (
     <Wrapper>
@@ -32,6 +28,7 @@ export default function index() {
         <Btn
           key={each[0]}
           style={{ backgroundColor: `${each[1].color}` }}
+          //   onClick={() => kakaoUserToken()}
           onClick={() => kakaoUserToken()}
         >
           {each[1].icon}
