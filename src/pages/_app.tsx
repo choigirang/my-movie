@@ -10,6 +10,7 @@ import { persistor, store, wrapper } from "@/store/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import Header from "@/components/common/Header";
+import { SessionProvider } from "next-auth/react";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,7 +22,7 @@ export const queryClient = new QueryClient({
   },
 });
 
-function App({ Component, ...pageProps }: AppProps) {
+function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const theme = createCustomTheme();
 
   return (
@@ -32,9 +33,10 @@ function App({ Component, ...pageProps }: AppProps) {
           <StyledEngineProvider injectFirst>
             {/* <ColorModeProvider> */}
             <ThemeProvider theme={theme}>
-              <Header />
-
-              <Component {...pageProps} />
+              <SessionProvider session={session}>
+                <Header />
+                <Component {...pageProps} />
+              </SessionProvider>
             </ThemeProvider>
             {/* </ColorModeProvider> */}
           </StyledEngineProvider>
