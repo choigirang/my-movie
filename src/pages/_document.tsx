@@ -4,6 +4,7 @@ import {
   NextScript,
   DocumentProps,
   DocumentContext,
+  Html,
 } from "next/document";
 import {
   DocumentHeadTags,
@@ -13,7 +14,7 @@ import {
 
 export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
   return (
-    <>
+    <Html>
       <Head>
         <DocumentHeadTags {...props} />
         <link
@@ -25,7 +26,7 @@ export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
         <Main />
         <NextScript />
       </body>
-    </>
+    </Html>
   );
 }
 
