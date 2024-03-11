@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { FaGooglePlusSquare } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const loginBtn = {
   google: {
@@ -21,6 +22,7 @@ const loginBtn = {
 
 export default function index() {
   const { kakaoUserToken } = useSocialLogin();
+  console.log(useSession().data);
 
   return (
     <Wrapper>
@@ -29,12 +31,13 @@ export default function index() {
           key={each[0]}
           style={{ backgroundColor: `${each[1].color}` }}
           //   onClick={() => kakaoUserToken()}
-          onClick={() => kakaoUserToken()}
+          onClick={() => signIn("kakao")}
         >
           {each[1].icon}
           <span>{each[1].title}</span>
         </Btn>
       ))}
+      <button onClick={() => signOut()}>로그아웃</button>
     </Wrapper>
   );
 }
