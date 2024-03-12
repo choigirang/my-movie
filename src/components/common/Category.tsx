@@ -4,11 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { LoginInitial, logout } from "@/store/modules/userSlice";
 import { useState } from "react";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Category() {
   const [showLogout, setShowLogout] = useState(false);
-  const user: LoginInitial = useAppSelector((state) => state.userSlice);
   const dispatch = useAppDispatch();
+  const { data: user } = useSession();
+  console.log(user);
 
   const loginUser = (
     <Profile
@@ -18,14 +20,14 @@ export default function Category() {
       <ProfileImg
         width={30}
         height={30}
-        src={user.image}
+        src={user?.user?.image!}
         alt="로그인 이미지"
         $showimg={showLogout ? 1 : 0}
       />
       <LogoutBtn
         $showbtn={showLogout}
         onClick={() => {
-          dispatch(logout());
+          signOut();
           alert("로그아웃 되었습니다.");
         }}
       >
@@ -42,7 +44,7 @@ export default function Category() {
       <PageLink href="/calendar" key="캘린더">
         캘린더
       </PageLink>
-      {!user.id ? (
+      {!user ? (
         <PageLink href="/my" key="로그인">
           로그인
         </PageLink>
