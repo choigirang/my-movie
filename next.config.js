@@ -5,7 +5,12 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["image.tmdb.org", "k.kakaocdn.net"], // 사용하는 이미지 호스트를 여기에 추가
+    domains: [
+      "image.tmdb.org",
+      "k.kakaocdn.net",
+      "lh3.googleusercontent.com",
+      "avatars.githubusercontent.com",
+    ], // 사용하는 이미지 호스트를 여기에 추가
   },
 };
 
