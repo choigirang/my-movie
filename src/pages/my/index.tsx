@@ -11,18 +11,28 @@ const loginBtn = {
     icon: <FaGooglePlusSquare />,
     title: "구글 로그인",
     color: "#F95D5E",
+    sign: "google",
   },
   kakao: {
     icon: <RiKakaoTalkFill />,
     title: "카카오톡 로그인",
     color: "#FFEC1F",
+    sign: "kakao",
   },
-  github: { icon: <FaGithub />, title: "깃헙 로그인", color: "#2b2b2b" },
+  github: {
+    icon: <FaGithub />,
+    title: "깃헙 로그인",
+    color: "#2b2b2b",
+    sign: "github",
+  },
 };
 
 export default function index() {
-  const { kakaoUserToken } = useSocialLogin();
-  console.log(useSession().data);
+  const { data } = useSession();
+
+  useEffect(() => {
+    if (data !== null) window.location.href = "/";
+  }, [data]);
 
   return (
     <Wrapper>
@@ -31,7 +41,7 @@ export default function index() {
           key={each[0]}
           style={{ backgroundColor: `${each[1].color}` }}
           //   onClick={() => kakaoUserToken()}
-          onClick={() => signIn("kakao")}
+          onClick={() => signIn(each[1].sign)}
         >
           {each[1].icon}
           <span>{each[1].title}</span>
