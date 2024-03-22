@@ -1,10 +1,17 @@
-import { MovieDetailType } from "@/type/movie";
-import { Grid, styled as MuiStyled } from "@mui/material";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState } from "react";
+
 import MovieImg from "./MovieImg";
+import { MovieDetailType } from "@/type/movie";
 import { useAppDispatch } from "@/hook/useRedux";
 import { selectMovie } from "@/store/modules/movieSelectSlice";
 
+import { Grid, styled as MuiStyled } from "@mui/material";
+
+/**
+ *
+ * @param each MovieList의 영화 데이터
+ * @returns MovieList의 매핑된 영화 데이터
+ */
 export default function MovieInfo(each: MovieDetailType) {
   const [hover, setHover] = useState(false);
   const { title, poster_path: imgUrl, vote_average: vote } = each;

@@ -1,9 +1,14 @@
 import React, { Dispatch, ReactNode } from "react";
-import { styled as MuiStyled } from "@mui/material";
-import { AlertProps } from "@/type/common";
+
 import { useAppDispatch } from "@/hook/useRedux";
+import { AlertProps } from "@/type/common";
 import { resetSelect } from "@/store/modules/movieSelectSlice";
 
+import { styled as MuiStyled } from "@mui/material";
+
+/**
+ * @returns 영화 선택 시 배경
+ */
 export default function AlertBg({ children }: AlertProps) {
   const dispatch = useAppDispatch();
 

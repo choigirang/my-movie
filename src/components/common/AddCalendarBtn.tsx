@@ -1,10 +1,16 @@
-import { Button, styled as MuiStyled } from "@mui/material";
-import React, { ChangeEvent, EventHandler, useEffect, useState } from "react";
-import EditCalendarIcon from "@mui/icons-material/EditCalendar";
+import React, { ChangeEvent, useEffect, useState } from "react";
+
 import { useAppDispatch, useAppSelector } from "@/hook/useRedux";
 import { resetSelect } from "@/store/modules/movieSelectSlice";
 import { savedMovie } from "@/store/modules/savedMovieSlice";
 
+import { Button, styled as MuiStyled } from "@mui/material";
+import EditCalendarIcon from "@mui/icons-material/EditCalendar";
+
+/**
+ * 영화 저장 버튼, redux에 저장된 영화 데이터를 바탕으로 데이터 추가
+ * @returns 날짜 input, 선택 dispatch
+ */
 export default function AddCalendarBtn() {
   const [date, setDate] = useState("");
   const dispatch = useAppDispatch();

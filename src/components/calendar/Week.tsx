@@ -1,10 +1,17 @@
-import { code } from "@/constant/genreCode";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+
 import { useAppDispatch, useAppSelector } from "@/hook/useRedux";
 import { selectMovie } from "@/store/modules/movieSelectSlice";
 import { SaveMovieInfo, SelectMovieData } from "@/type/movie";
-import { Container, styled as MuiStyled } from "@mui/material";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { code } from "@/constant/genreCode";
 
+import { Container, styled as MuiStyled } from "@mui/material";
+
+/**
+ * @param day CalendarMap의 useCalendar로 계산된 날짜 정보
+ * @param clickDay 선택한 날짜 정보
+ * @returns 날짜 정보에 따른 주 구성
+ */
 export default function Week({
   days,
   clickDay,
@@ -12,7 +19,7 @@ export default function Week({
   days: (0 | { date: string; movies: Array<SaveMovieInfo> })[];
   clickDay: Dispatch<SetStateAction<boolean>>;
 }) {
-  const [curDate, setCurData] = useState(new Date().getDate());
+  const [curDate] = useState(new Date().getDate());
   const dispatch = useAppDispatch();
   const state = useAppSelector((state) => state.movieSlice);
 

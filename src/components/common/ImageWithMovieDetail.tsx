@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Button, Grid, styled as MuiStyled } from "@mui/material";
-import { ClipLoader, MoonLoader, PropagateLoader } from "react-spinners";
+import React, { useState } from "react";
 import Image from "next/image";
-import DetailDes from "./DetailDes";
-import useResizeDetail from "@/hook/useResizeDetail";
-import { useAppSelector } from "@/hook/useRedux";
+import { MoonLoader } from "react-spinners";
 
+import { useAppSelector } from "@/hook/useRedux";
+import useResizeDetail from "@/hook/useResizeDetail";
+import DetailDes from "./DetailDes";
+
+import { Grid, styled as MuiStyled } from "@mui/material";
+
+/**
+ * 선택된 영화 이미지
+ * @returns 선택된 영화 이미지와 영화 상세 정보
+ */
 export default function ImageWithMovieDetail() {
   const [loading, setLoading] = useState(true); // 이미지 로딩 상태
   const selectInfo = useAppSelector((state) => state.movieSlice);

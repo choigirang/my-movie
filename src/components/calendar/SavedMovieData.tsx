@@ -1,11 +1,17 @@
-import { code } from "@/constant/genreCode";
-import { useAppDispatch, useAppSelector } from "@/hook/useRedux";
-import { SaveMovieInfo } from "@/type/movie";
-import { styled as MuiStyled } from "@mui/material";
 import React from "react";
-import { deleteMovie, savedMovie } from "@/store/modules/savedMovieSlice";
+import { code } from "@/constant/genreCode";
+
+import { useAppDispatch, useAppSelector } from "@/hook/useRedux";
+import { deleteMovie } from "@/store/modules/savedMovieSlice";
+import { SaveMovieInfo } from "@/type/movie";
+
+import { styled as MuiStyled } from "@mui/material";
 import Delete from "@mui/icons-material/Delete";
 
+/**
+ * AddMovie의 SelectMovie로 선택된 영화 데이터 매핑
+ * @returns 영화 삭제 및 정보
+ */
 export default function SavedMovieData() {
   const selectData = useAppSelector((state) => state.movieSlice);
   const savedMovie = useAppSelector((state) => state.savedMovieSlice);

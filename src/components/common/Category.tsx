@@ -1,16 +1,18 @@
-import { useAppDispatch, useAppSelector } from "@/hook/useRedux";
-import { Button, styled as MuiStyled } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
-import { LoginInitial, logout } from "@/store/modules/userSlice";
 import { useState } from "react";
+
 import { signOut, useSession } from "next-auth/react";
 
+import { styled as MuiStyled } from "@mui/material";
+
+/**
+ *
+ * @returns 카테고리 및 next-auth를 사용한 로그인창
+ */
 export default function Category() {
   const [showLogout, setShowLogout] = useState(false);
-  const dispatch = useAppDispatch();
   const { data: user } = useSession();
-  console.log(user);
 
   const loginUser = (
     <Profile

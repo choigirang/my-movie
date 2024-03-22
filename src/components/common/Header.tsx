@@ -1,8 +1,13 @@
 import React from "react";
-import { styled as MuiStyled } from "@mui/material";
-import Category from "./Category";
-import { Box, Container } from "@mui/material";
 
+import Category from "./Category";
+
+import { styled as MuiStyled } from "@mui/material";
+import { Container } from "@mui/material";
+
+/**
+ * @returns 카테고리를 포함한 헤더
+ */
 export default function Header() {
   return (
     <Container

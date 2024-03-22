@@ -1,14 +1,21 @@
-import useCalendar from "@/hook/useCalendar";
-import { Button, Container, styled as MuiStyled } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import React, { useState } from "react";
 import { subMonths } from "date-fns";
+
+import useCalendar from "@/hook/useCalendar";
 import Week from "./Week";
 import AddMovie from "./AddMovie";
 
+import { Button, Container, styled as MuiStyled } from "@mui/material";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+
 const DAY_LIST = ["일", "월", "화", "수", "목", "금", "토"];
 
+/**
+ * useCalendar에서 계산된 날짜를 기준으로
+ * 달력 구성
+ * @returns Week(Day)
+ */
 export default function CalendarMap() {
   const { weekCalendarList, currentDate, setCurrentDate } = useCalendar();
   const [addCalender, setAddCalendar] = useState<boolean>(false);

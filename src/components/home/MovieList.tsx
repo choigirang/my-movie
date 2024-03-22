@@ -1,15 +1,21 @@
-import useMovieData from "@/hook/useMovieData";
-import { Container, Grid } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
-import MovieInfo from "./MovieInfo";
-import { MovieDetailType } from "@/type/movie";
 import { PropagateLoader } from "react-spinners";
+
+import useMovieData from "@/hook/useMovieData";
+import MovieInfo from "./MovieInfo";
 import MovieDetail from "./MovieDetail";
 import { useAppSelector } from "@/hook/useRedux";
+import { MovieDetailType } from "@/type/movie";
 
+import { Grid } from "@mui/material";
+
+/**
+ *
+ * @returns useInfiniteQuery를 사용한 무한 스크롤 영화 데이터
+ */
 export default function MovieList() {
   const selectedMovie = useAppSelector((state) => state.movieSlice);
-  const [openDetail, setOpenDetail] = useState(false);
+  const [, setOpenDetail] = useState(false);
   const target = useRef<HTMLDivElement>(null);
   // useInfiniteQuery hooks
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =

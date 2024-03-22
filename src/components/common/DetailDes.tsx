@@ -1,9 +1,15 @@
-import { Grid, styled as MuiStyled } from "@mui/material";
 import React from "react";
-import StarSharpIcon from "@mui/icons-material/StarSharp";
+
 import AddCalendarBtn from "./AddCalendarBtn";
 import { useAppSelector } from "@/hook/useRedux";
 
+import { Grid, styled as MuiStyled } from "@mui/material";
+import StarSharpIcon from "@mui/icons-material/StarSharp";
+
+/**
+ * 선택된 영화 보여줄 컴포넌트
+ * @returns 영화 상세 정보
+ */
 export default function DetailDes() {
   const seletedMovie = useAppSelector((state) => state.movieSlice);
 
