@@ -8,7 +8,7 @@ import { styled } from "@mui/material";
  *
  * @returns login loading page
  */
-export default function oauth() {
+export default function Oauth() {
   const { kakaoUserInfoCode } = useSocialLogin();
 
   useEffect(() => {

@@ -30,7 +30,7 @@ const loginBtn = {
 /**
  * @returns social login을 활용한 사용자 로그인 page
  */
-export default function index() {
+export default function Index() {
   const { data } = useSession();
 
   useEffect(() => {

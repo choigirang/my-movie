@@ -23,7 +23,8 @@ export default function MovieList() {
 
   // current observer
   useEffect(() => {
-    if (target.current && !hasNextPage) {
+    const targetRef = target.current;
+    if (targetRef && !hasNextPage) {
       return;
     }
     const observer = new IntersectionObserver(
@@ -34,16 +35,16 @@ export default function MovieList() {
       },
       { threshold: 1 }
     );
-    if (target.current) {
-      observer.observe(target.current);
+    if (targetRef) {
+      observer.observe(targetRef);
     }
 
     return () => {
-      if (target.current) {
-        observer.unobserve(target.current);
+      if (targetRef) {
+        observer.unobserve(targetRef);
       }
     };
-  }, [target.current, data?.pageParams]);
+  }, [target]);
 
   return (
     <Grid container spacing={4}>
