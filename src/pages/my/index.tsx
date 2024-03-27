@@ -1,10 +1,10 @@
-import useSocialLogin from "@/hook/useSocialLogin";
-import { Button, Container, styled as MuiStyled } from "@mui/material";
 import React, { useEffect } from "react";
+import { signIn, useSession } from "next-auth/react";
+
+import { Button, Container, styled as MuiStyled } from "@mui/material";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { FaGooglePlusSquare } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { signIn, signOut, useSession } from "next-auth/react";
 
 const loginBtn = {
   google: {
