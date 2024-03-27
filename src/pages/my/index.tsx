@@ -50,7 +50,6 @@ export default function index() {
           <span>{each[1].title}</span>
         </Btn>
       ))}
-      <button onClick={() => signOut()}>로그아웃</button>
     </Wrapper>
   );
 }
