@@ -7,66 +7,56 @@ import { savedMovie } from "@/store/modules/savedMovieSlice";
 import { Button, styled as MuiStyled } from "@mui/material";
 import EditCalendarIcon from "@mui/icons-material/EditCalendar";
 
+const curDate = new Date();
+const year = curDate.getFullYear();
+const month = curDate.getMonth();
+const day = curDate.getDate();
+const strDate = `${year}-${month + 1 >= 10 ? month + 1 : `0${month + 1}`}-${
+  day >= 10 ? day : `0${day}`
+}`;
+
 /**
  * 영화 저장 버튼, redux에 저장된 영화 데이터를 바탕으로 데이터 추가
  * @returns 날짜 input, 선택 dispatch
  */
 export default function AddCalendarBtn() {
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(strDate);
   const dispatch = useAppDispatch();
   const select = useAppSelector((state) => state.movieSlice);
 
-  useEffect(() => {
-    setDate(select.date);
-  }, []);
+  console.log(date);
 
   const handleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const splitingDate = e.target.value.split("-");
-    const trimmedDate = splitingDate.map((str) => {
-      if (str.startsWith("0")) {
-        return str.substr(1);
-      }
-      return str;
-    });
-    const deleteZeroDate = trimmedDate.join("-");
-    setDate(deleteZeroDate);
+    const selectDate = e.target.value;
+    setDate(selectDate);
   };
 
   const dispatchHandler = () => {
     if (!date || !select) return alert("영화 정보와 날짜를 입력해주세요.");
-    dispatch(savedMovie({ ...select, date }));
+    dispatch(savedMovie({ ...select, date: changeDateForm() }));
     dispatch(resetSelect());
   };
 
+  // new Date와 date-fns의 폼이 같지 않기 때문에 날짜 변환
   const changeDateForm = () => {
-    if (select.date !== "") {
-      const dateString = select.date;
-      const dateParts = dateString.split("-");
-      const year = dateParts[0];
-      const month =
-        dateParts[1].length === 1 ? `0${dateParts[1]}` : dateParts[1];
-      const day = dateParts[2].length === 1 ? `0${dateParts[2]}` : dateParts[2];
-      const formattedDate = `${year}-${month}-${day}`;
-      return formattedDate;
-    } else {
-      const year = new Date().getFullYear();
-      const month =
-        (new Date().getMonth() + 1).toString().length === 1
-          ? `0${new Date().getMonth() + 1}`
-          : `${new Date().getMonth() + 1}`;
-      const date =
-        new Date().getDate().toString().length === 1
-          ? `0${new Date().getDate()}`
-          : `${new Date().getDate()}`;
+    const splitDate = date.split("-");
+    let [year, month, day] = splitDate;
 
-      return `${year}-${month}-${date}`;
+    if (month.startsWith("0")) {
+      month = month.substring(1);
     }
+
+    if (day.startsWith("0")) {
+      day = day.substring(1);
+    }
+
+    return `${year}-${month}-${day}`;
   };
 
   return (
     <Container>
       {/* !클릭한 날짜 전달하기  */}
-      <input type="date" onChange={handleDateChange} value={changeDateForm()} />
+      <input type="date" onChange={handleDateChange} value={date} />
       <CustomBtn
         startIcon={<EditCalendarIcon />}
         variant="contained"
