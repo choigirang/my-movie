@@ -2,8 +2,10 @@ import NextAuth from "next-auth";
 import KakaoProvider from "next-auth/providers/kakao";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
-import CredentialsProvider from "next-auth/providers/credentials";
 
+/**
+ * @returns next/auth redirect page
+ */
 export default NextAuth({
   providers: [
     KakaoProvider({

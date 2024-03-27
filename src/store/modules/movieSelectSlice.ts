@@ -1,8 +1,5 @@
 import { SelectMovieData } from "@/type/movie";
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { HYDRATE } from "next-redux-wrapper";
-import { RootState } from "../store";
-import { RehydrateAction } from "redux-persist";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export const initialState: SelectMovieData = {
   id: 1,

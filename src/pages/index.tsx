@@ -1,17 +1,10 @@
-import Header from "@/components/common/Header";
+import Head from "next/head";
 import MovieList from "@/components/home/MovieList";
 import { useColorMode } from "@/hook/useColorMode";
-import {
-  Button,
-  Container,
-  styled as MuiStyled,
-  styled,
-  useColorScheme,
-} from "@mui/material";
-import Head from "next/head";
-import ArrowCircleLeftSharpIcon from "@mui/icons-material/ArrowCircleLeftSharp";
 import useMoveScroll from "@/hook/useScrollTop";
-import { wrapper } from "@/store/store";
+
+import ArrowCircleLeftSharpIcon from "@mui/icons-material/ArrowCircleLeftSharp";
+import { Container, styled } from "@mui/material";
 
 export default function Home() {
   // const { toggleColorMode } = useThemeHandler();

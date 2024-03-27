@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 
+/**
+ * 페이지별 Alert 사이즈 조정에 따른 resize hooks
+ * @returns next/Image에 입력될 image info
+ */
 export default function useResizeDetail() {
   const [resizeWithUrl, setResizeWithUrl] = useState(false);
 

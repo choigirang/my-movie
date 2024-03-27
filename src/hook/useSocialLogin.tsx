@@ -8,6 +8,10 @@ const KAKAO_REDIRECT = process.env.NEXT_PUBLIC_KAKAO_REDIRECT;
 const KAKAO_TOKEN_URL = process.env.NEXT_PUBLIC_KAKAO_TOKEN_URL;
 const KAKAO_ACCESS_URL = process.env.NEXT_PUBLIC_KAKAO_ACCESS_URL;
 
+/**
+ * next/auth 사용으로 인한 미사용 훅
+ * @returns
+ */
 export default function useSocialLogin() {
   const dispatch = useAppDispatch();
 

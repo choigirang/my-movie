@@ -27,6 +27,9 @@ const loginBtn = {
   },
 };
 
+/**
+ * @returns social login을 활용한 사용자 로그인 page
+ */
 export default function index() {
   const { data } = useSession();
 

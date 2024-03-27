@@ -1,16 +1,18 @@
-import { useAppDispatch } from "@/hook/useRedux";
-import useSocialLogin from "@/hook/useSocialLogin";
-import { login } from "@/store/modules/userSlice";
-import { styled } from "@mui/material";
-import axios from "axios";
 import React, { useEffect } from "react";
 
+import useSocialLogin from "@/hook/useSocialLogin";
+
+import { styled } from "@mui/material";
+
+/**
+ *
+ * @returns login loading page
+ */
 export default function oauth() {
-  const dispatch = useAppDispatch();
-  const {kakaoUserInfoCode} = useSocialLogin()
+  const { kakaoUserInfoCode } = useSocialLogin();
 
   useEffect(() => {
-    kakaoUserInfoCode()
+    kakaoUserInfoCode();
   }, []);
 
   return <Loading>로그인 중입니다.</Loading>;
