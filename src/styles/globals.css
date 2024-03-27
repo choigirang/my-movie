@@ -1,3 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "logo";
+  src: url("/fonts/logo-fonts.ttf") format("truetype");
+}
+
+#__next {
+  width: 100%;
+  justify-content: center;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "NotoSans";
+}
+
+body {
+  background-color: #0f1015;
+}
+
 html,
 body,
 div,
