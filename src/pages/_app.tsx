@@ -7,7 +7,6 @@ import { persistor, store, wrapper } from "@/store/store";
 
 import Header from "@/components/common/Header";
 import PropTypes from "prop-types";
-import { ColorModeProvider, useColorMode } from "@/hook/useColorMode";
 
 import "@/styles/globals.css";
 import { createCustomTheme } from "@/styles/theme";

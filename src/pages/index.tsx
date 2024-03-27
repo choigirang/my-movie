@@ -1,6 +1,5 @@
 import Head from "next/head";
 import MovieList from "@/components/home/MovieList";
-import { useColorMode } from "@/hook/useColorMode";
 import useMoveScroll from "@/hook/useScrollTop";
 
 import ArrowCircleLeftSharpIcon from "@mui/icons-material/ArrowCircleLeftSharp";
