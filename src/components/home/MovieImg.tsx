@@ -1,8 +1,13 @@
-import { Container, styled as MuiStyled } from "@mui/material";
 import Image from "next/image";
 import React from "react";
+
+import { Container, styled as MuiStyled } from "@mui/material";
 import StarSharpIcon from "@mui/icons-material/StarSharp";
 
+/**
+ * @param props MovieLis의 영화 정보
+ * @returns MovieList에서 매핑될 영화 포스터
+ */
 export default function MovieImg({
   url,
   $mouseHover,

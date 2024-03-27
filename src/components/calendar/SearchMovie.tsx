@@ -1,20 +1,19 @@
-import useInputs from "@/hook/useInputs";
-import { Button, Container } from "@mui/material";
-import React, {
-  FormEvent,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { styled as MuiStyled } from "@mui/material";
-import SearchResults from "./SearchResults";
-import useMovieData from "@/hook/useMovieData";
-import { MovieDetailType } from "@/type/movie";
+import React, { FormEvent, useEffect, useState } from "react";
 
+import useInputs from "@/hook/useInputs";
+import useMovieData from "@/hook/useMovieData";
+import SearchResults from "./SearchResults";
+
+import { styled as MuiStyled } from "@mui/material";
+import { Button } from "@mui/material";
+
+/**
+ * AddMovie에서 영화 검색
+ * @returns 검색 input & SearchResults
+ */
 export default function SearchMovie() {
   const [showResult, setShowResult] = useState(false);
-  const [keyword, setKeyword, setInit] = useInputs("");
+  const [keyword, setKeyword] = useInputs("");
   const [apiKeyword, setApiKeyword] = useState<string | number>("");
   const { data, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useMovieData(apiKeyword);

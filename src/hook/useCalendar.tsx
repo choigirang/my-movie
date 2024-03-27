@@ -1,9 +1,14 @@
-import { startOfMonth, getDay, getDaysInMonth } from "date-fns";
 import React, { useState } from "react";
+import { startOfMonth, getDay, getDaysInMonth } from "date-fns";
+
 import { useAppSelector } from "./useRedux";
 
 const DAYS_IN_WEEK = 7;
 
+/**
+ * CalendarMap 컴포넌트에서 사용된 날짜 계산 훅
+ * @returns 각 주마다 날짜가 기입된 배열
+ */
 export default function useCalendar() {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const savedMovieData = useAppSelector((state) => state.savedMovieSlice);

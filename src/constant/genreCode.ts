@@ -1,3 +1,4 @@
+// 영화 장르 코드
 export const code: { [key: number]: { [key: string]: string } } = {
   28: { color: "#424141", category: "액션" }, // Action
   12: { color: "#111844", category: "어드벤처" }, // Adventure

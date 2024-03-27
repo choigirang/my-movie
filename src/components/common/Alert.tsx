@@ -1,10 +1,17 @@
-import React, { Dispatch, ReactNode, SetStateAction } from "react";
-import { Grid, Button, styled as MuiStyled } from "@mui/material";
-import { AlertProps, CustomStyle } from "@/type/common";
-import ClearIcon from "@mui/icons-material/Clear";
-import { useAppDispatch } from "@/hook/useRedux";
-import { resetSelect } from "@/store/modules/movieSelectSlice";
+import React from "react";
 
+import { resetSelect } from "@/store/modules/movieSelectSlice";
+import { useAppDispatch } from "@/hook/useRedux";
+import { AlertProps } from "@/type/common";
+
+import { Grid, Button, styled as MuiStyled } from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
+
+/**
+ *
+ * @param param AlertBg > Alert > 들어올 chidren
+ * @returns 닫기 버튼과 배경
+ */
 export default function Alert({ children }: AlertProps) {
   const dispatch = useAppDispatch();
   const path = window.location.pathname === "/calendar";

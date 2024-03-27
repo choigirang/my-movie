@@ -4,17 +4,17 @@ import {
   NextScript,
   DocumentProps,
   DocumentContext,
+  Html,
 } from "next/document";
 import {
   DocumentHeadTags,
   DocumentHeadTagsProps,
   documentGetInitialProps,
 } from "@mui/material-nextjs/v13-pagesRouter";
-import Header from "@/components/common/Header";
 
 export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
   return (
-    <>
+    <Html>
       <Head>
         <DocumentHeadTags {...props} />
         <link
@@ -23,11 +23,10 @@ export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
         />
       </Head>
       <body>
-        <Header />
         <Main />
         <NextScript />
       </body>
-    </>
+    </Html>
   );
 }
 

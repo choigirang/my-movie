@@ -1,8 +1,13 @@
-import { api } from "@/api/api";
-import { MovieDetailType } from "@/type/movie";
 import React, { useState } from "react";
-import { useInfiniteQuery } from "react-query";
+import { api } from "@/api/api";
 
+import { useInfiniteQuery } from "react-query";
+import { MovieDetailType } from "@/type/movie";
+
+/**
+ * api data의 page에 따른 useInfiniteQuery
+ * @returns 무한 스크롤
+ */
 export default function useMovieData(keyword?: string | number) {
   const [totalPage, setTotalPage] = useState<number>(1);
 

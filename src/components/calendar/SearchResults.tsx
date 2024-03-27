@@ -1,10 +1,17 @@
-import { MovieDetailType, SearchResultsProps } from "@/type/movie";
 import React from "react";
-import { styled as MuiStyled } from "@mui/material";
 import { PropagateLoader } from "react-spinners";
-import { useAppDispatch, useAppSelector } from "@/hook/useRedux";
-import { selectMovie } from "@/store/modules/movieSelectSlice";
 
+import { useAppDispatch } from "@/hook/useRedux";
+import { selectMovie } from "@/store/modules/movieSelectSlice";
+import { MovieDetailType, SearchResultsProps } from "@/type/movie";
+
+import { styled as MuiStyled } from "@mui/material";
+
+/**
+ * AddMovie의 영화 검색 결과
+ * @param props SearchMovie의 data
+ * @returns 영화 데이터(무한 스크롤)
+ */
 export default function SearchResults(props: SearchResultsProps) {
   const dispatch = useAppDispatch();
 
