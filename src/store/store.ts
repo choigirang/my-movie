@@ -8,9 +8,31 @@ import {
 import { createWrapper, HYDRATE, MakeStore } from "next-redux-wrapper";
 import movieSelectSlice from "./modules/movieSelectSlice";
 import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 import savedMovieSlice from "./modules/savedMovieSlice";
 import userSlice from "./modules/userSlice";
+import createWebStorage from "redux-persist/es/storage/createWebStorage";
+
+export function createPersistStore() {
+  const isServer = typeof window === "undefined";
+  if (isServer) {
+    return {
+      getItem(_key: any) {
+        return Promise.resolve(null);
+      },
+      setItem(_key: any, value: any) {
+        return Promise.resolve(value);
+      },
+      removeItem(_key: any) {
+        return Promise.resolve();
+      },
+    };
+  }
+  return createWebStorage("local");
+}
+const storage =
+  typeof window !== "undefined"
+    ? createWebStorage("local")
+    : createPersistStore();
 
 const persistConfig = {
   key: "root",
