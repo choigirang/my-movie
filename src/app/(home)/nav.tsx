@@ -35,7 +35,7 @@ export default function Nav() {
             My Portfolio.
           </Link>
         </h1>
-        <Category />
+        {/* <Category /> */}
       </div>
     </nav>
   );

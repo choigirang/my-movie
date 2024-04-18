@@ -1,11 +1,12 @@
 "use client";
 
 import React from "react";
-import useMoveScroll from "@/hook/useScrollTop";
+
 import ArrowCircleLeftSharpIcon from "@mui/icons-material/ArrowCircleLeftSharp";
+import useScroll from "@/hook/useScroll";
 
 export default function ScrollBtn() {
-  const scrollTop = useMoveScroll();
+  const scrollTop = useScroll();
 
   return (
     <ArrowCircleLeftSharpIcon

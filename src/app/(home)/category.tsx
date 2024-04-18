@@ -6,7 +6,7 @@ import { useState } from "react";
 import { FaChevronCircleRight } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { styled as MuiStyled } from "@mui/material";
-import useSize from "../hook/useSize";
+import useSize from "../../hook/useSize";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
