@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-
 import { MovieDetailType } from "@/type/movie";
-import { selectMovie } from "@/store/modules/movieSelectSlice";
 
-import { Grid, styled as MuiStyled } from "@mui/material";
 import { useAppDispatch } from "@/hook/useRedux";
-import MovieImg from "./movieImg";
+import { selectMovie } from "@/store/modules/movieSelectSlice";
+import { StarIcon } from "@heroicons/react/16/solid";
+import Image from "next/image";
+import { useState } from "react";
+
+const baseUrl = "https://image.tmdb.org/t/p/w200";
 
 /**
  *
@@ -15,57 +16,43 @@ import MovieImg from "./movieImg";
  * @returns MovieList의 매핑된 영화 데이터
  */
 export default function MovieInfo(each: MovieDetailType) {
-  const [hover, setHover] = useState(false);
-  const { title, poster_path: imgUrl, vote_average: vote } = each;
+  const [mouse, setMouse] = useState(false);
   const dispatch = useAppDispatch();
 
   return (
-    <Grid
-      item
-      xs={12}
-      sm={6}
-      md={4}
-      lg={3}
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        position: "relative",
-      }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+    <div
+      className="relative w-[200px] py-[20px] cursor-pointer"
       onClick={() => dispatch(selectMovie({ ...each }))}
+      onMouseEnter={() => setMouse(true)}
+      onMouseLeave={() => setMouse(false)}
     >
-      <MovieImg
-        $mouseHover={hover}
-        url={imgUrl}
-        vote={Number(vote.toFixed(1))}
-      />
-      <Title $mouseHover={hover}>{title}</Title>
-    </Grid>
+      <div className=" max-w-[200px] max-h-[300px] flex cursor-pointer">
+        <Image
+          src={baseUrl + each.poster_path}
+          alt="poster"
+          width={200}
+          height={300}
+          style={{
+            borderRadius: 10,
+            opacity: mouse ? 0.5 : 1,
+          }}
+          priority
+        />
+        <div className="flex gap-1 absolute top-[10px] left-[10px] items-center p-1 text-[12px] leading-3 text-white bg-[rgba(0,0,0,0.7)] rounded">
+          <StarIcon
+            width={12}
+            height={12}
+            className="text-yellow-400"
+          ></StarIcon>
+          <span>{Number(each.vote_average.toFixed(1))}</span>
+        </div>
+      </div>
+      <h2
+        className="max-w-[200px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap text-center text-white transition-custom"
+        style={{ opacity: mouse ? 1 : 0 }}
+      >
+        {each.title}
+      </h2>
+    </div>
   );
 }
-
-const Title = MuiStyled("span")<{ $mouseHover: boolean }>(
-  ({ $mouseHover }) => ({
-    width: "200px",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    padding: "0 20px",
-    transform: "translate(-50%,-50%)",
-    fontWeight: 500,
-    fontSize: 25,
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-    textAlign: "center",
-    color: "white",
-    opacity: $mouseHover ? 1 : 0,
-    transition: "all .3s",
-
-    "&:hover": {
-      cursor: "pointer",
-    },
-  })
-);
