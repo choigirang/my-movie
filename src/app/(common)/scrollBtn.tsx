@@ -2,30 +2,18 @@
 
 import React from "react";
 
-import ArrowCircleLeftSharpIcon from "@mui/icons-material/ArrowCircleLeftSharp";
 import useScroll from "@/hook/useScroll";
+import { ArrowUpCircleIcon } from "@heroicons/react/16/solid";
 
 export default function ScrollBtn() {
   const scrollTop = useScroll();
 
   return (
-    <ArrowCircleLeftSharpIcon
+    <ArrowUpCircleIcon
+      width={16}
+      height={16}
+      className="fixed flex mx-auto bottom-0 left-1/2 -translate-y-1/2 rotate-90 cursor-pointer transition-custom"
       onClick={() => scrollTop}
-      sx={{
-        position: "fixed",
-        bottom: 0,
-        left: "50%",
-        transform: "translate(-50%, -50%) rotate(90deg)",
-        display: "flex",
-        margin: "0 auto",
-        fill: "white",
-        fontSize: 50,
-        zIndex: 998,
-        "&:hover": {
-          cursor: "pointer",
-          transition: "all .3s",
-        },
-      }}
     />
   );
 }

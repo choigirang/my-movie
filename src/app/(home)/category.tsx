@@ -3,12 +3,10 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import { FaChevronCircleRight } from "react-icons/fa";
-import { IoMdMenu } from "react-icons/io";
-import { styled as MuiStyled } from "@mui/material";
 import useSize from "../../hook/useSize";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { ArrowRightCircleIcon, Bars3Icon } from "@heroicons/react/16/solid";
 
 export default function Category() {
   const [showNav, setShowNav] = useState(false);
@@ -17,27 +15,30 @@ export default function Category() {
   const { data: user } = useSession();
 
   const loginUser = (
-    <Profile
+    <div
+      className="relative"
       onMouseEnter={() => setShowLogout(true)}
       onMouseLeave={() => setShowLogout(false)}
     >
-      <ProfileImg
+      <Image
         width={30}
         height={30}
         src={user?.user?.image!}
         alt="로그인 이미지"
-        $showimg={showLogout ? 1 : 0}
+        className="rounded-[50%] transition-custom"
+        style={{ opacity: showLogout ? 1 : 0 }}
       />
-      <LogoutBtn
-        $showbtn={showLogout}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[30px] flex justify-center items-center rounded bg-white cursor-pointer"
+        style={{ opacity: showLogout ? 0 : 1 }}
         onClick={() => {
           signOut();
           alert("로그아웃 되었습니다.");
         }}
       >
         로그아웃
-      </LogoutBtn>
-    </Profile>
+      </div>
+    </div>
   );
 
   /** 모바일 사이즈 */
@@ -49,25 +50,29 @@ export default function Category() {
   return (
     <>
       {isMobile && !showNav && (
-        <IoMdMenu
+        <Bars3Icon
           width={32}
           height={32}
           onClick={handleNav}
           className="hover:cursor-pointer hover:text-yellow-400"
         />
       )}
-      <Container className="flex gap-10 transition-custom">
+      <ul className="flex gap-10 transition-custom">
         <li>
           <Link href="/">Home</Link>
         </li>
         <li>
           <Link href="/calendar">Calendar</Link>
         </li>
-        <li>
-          <Link href="/my">My</Link>
-        </li>
+        {!user ? (
+          <Link href="/my" key="로그인">
+            My
+          </Link>
+        ) : (
+          loginUser
+        )}
         {isMobile && (
-          <FaChevronCircleRight
+          <ArrowRightCircleIcon
             className="absolute top-1/2 left-[10%] -translate-x-1/2 hover:text-yellow-600 hover:cursor-pointer"
             width={32}
             height={32}
@@ -75,49 +80,7 @@ export default function Category() {
             onTouchStart={handleNav}
           />
         )}
-      </Container>
+      </ul>
     </>
   );
 }
-
-const Container = MuiStyled("ul")({
-  width: 300,
-  display: "flex",
-  justifyContent: "space-around",
-});
-
-const PageLink = MuiStyled(Link)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  textDecoration: "none",
-  display: "flex",
-  alignItems: "center",
-}));
-
-const Profile = MuiStyled("div")({
-  position: "relative",
-});
-
-const LogoutBtn = MuiStyled("div")<{ $showbtn: boolean }>(({ $showbtn }) => ({
-  width: 70,
-  height: 30,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%,-50%)",
-  borderRadius: 5,
-  backgroundColor: "white",
-  opacity: $showbtn ? 1 : 0,
-
-  "&:hover": {
-    cursor: "pointer",
-  },
-}));
-
-const ProfileImg = MuiStyled(Image)<{ $showimg: number }>(({ $showimg }) => ({
-  borderRadius: "50%",
-  opacity: $showimg ? 0 : 1,
-  transition: "all .3s",
-}));

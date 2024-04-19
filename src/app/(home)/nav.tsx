@@ -5,7 +5,7 @@ import Category from "./category";
 import { useEffect, useState } from "react";
 
 /** 2024/04/04 - 레이아웃 header 컴포넌트 */
-export default function Nav() {
+export default function Header() {
   const [scroll, setScroll] = useState(false);
 
   /** 스크롤 */
@@ -31,8 +31,8 @@ export default function Nav() {
     >
       <div className="container h-full flex justify-between items-center pt-0">
         <h1 className="text-3xl text-yellow-400 font-bold">
-          <Link href="/" title="최기랑 포트폴리오" className="font-black">
-            My Portfolio.
+          <Link href="/" title="Movie" className="font-black">
+            My Movie.
           </Link>
         </h1>
         {/* <Category /> */}

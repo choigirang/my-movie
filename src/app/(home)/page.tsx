@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div>
-      <MovieList></MovieList>
-    </div>
+    <section className="container pt-32">
+      <MovieList />
+    </section>
   );
 }
