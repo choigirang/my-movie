@@ -1,11 +1,10 @@
-import { Grid } from "@mui/material";
 import { api } from "../../api/api";
 import { MovieDetailType } from "@/type/movie";
-import React from "react";
 import MovieInfo from "./movieInfo";
 
 async function getMovie() {
   const res = await api.get("movie/popular", { params: 1 });
+
   return res.data;
 }
 
@@ -13,10 +12,11 @@ export default async function MovieList() {
   const movies = await getMovie();
 
   return (
-    <Grid container spacing={4}>
+    <ul className="w-full grid grid-cols-4 place-items-center sm:grid-rows-1 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-3">
       {movies.results.map((movie: MovieDetailType) => (
-        <MovieInfo {...movie} key={movie.id} />
+        // <div>{movie.title}</div>
+        <MovieInfo key={movie.id} {...movie} />
       ))}
-    </Grid>
+    </ul>
   );
 }
