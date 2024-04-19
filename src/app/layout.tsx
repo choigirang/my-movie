@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import "../styles/globals.css";
+import "../style/global.css";
 import ScrollBtn from "./(common)/scrollBtn";
 import Nav from "./(home)/nav";
 import ReduxProvider from "../provider/redux";
-import MuiProvider from "../provider/mui";
 import QueryProvider from "@/provider/query";
 import SessionProvider from "@/provider/session";
 import { Session } from "next-auth";
@@ -26,11 +25,9 @@ export default function RootLayout({
         <ReduxProvider>
           <QueryProvider>
             <SessionProvider session={session}>
-              <MuiProvider>
-                <Nav />
-                {children}
-                <ScrollBtn />
-              </MuiProvider>
+              <Nav />
+              {children}
+              <ScrollBtn />
             </SessionProvider>
           </QueryProvider>
         </ReduxProvider>
