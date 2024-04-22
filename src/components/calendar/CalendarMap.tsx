@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { subMonths } from "date-fns";
 
-import useCalendar from "@/hook/useCalendar";
+import useCalendar from "@/hook/useMakeCalendar";
 import Week from "./Week";
 import AddMovie from "./AddMovie";
 
