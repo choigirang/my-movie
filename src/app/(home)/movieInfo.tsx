@@ -7,6 +7,7 @@ import { selectMovie } from "@/store/modules/movieSelectSlice";
 import { StarIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
 import { useState } from "react";
+import { RingLoader } from "react-spinners";
 
 const baseUrl = "https://image.tmdb.org/t/p/w200";
 
@@ -20,7 +21,7 @@ export default function MovieInfo(each: MovieDetailType) {
   const dispatch = useAppDispatch();
 
   return (
-    <div
+    <li
       className="relative w-[200px] py-[20px] cursor-pointer"
       onClick={() => dispatch(selectMovie({ ...each }))}
       onMouseEnter={() => setMouse(true)}
@@ -53,6 +54,6 @@ export default function MovieInfo(each: MovieDetailType) {
       >
         {each.title}
       </h2>
-    </div>
+    </li>
   );
 }
