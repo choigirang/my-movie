@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import MovieList from "./(movie)/movieList";
+import MovieList from "./movieList";
 
 export const metadata: Metadata = {
   title: "나의 영화 일지",
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <section className="container pt-32">
+    <section className="relative container flex-col justify-between pt-32">
       <MovieList />
     </section>
   );
