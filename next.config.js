@@ -10,7 +10,7 @@ const nextConfig = {
         hostname: "image.tmdb.org",
       },
       {
-        protocol: "https",
+        protocol: "http",
         hostname: "k.kakaocdn.net",
       },
       {
