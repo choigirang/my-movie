@@ -1,59 +1,36 @@
-"use client";
-
 import { MovieDetailType } from "@/type/movie";
-
-import { useAppDispatch } from "@/hook/useRedux";
-import { selectMovie } from "@/store/modules/movieSelectSlice";
 import { StarIcon } from "@heroicons/react/16/solid";
-import Image from "next/image";
-import { useState } from "react";
-import { RingLoader } from "react-spinners";
-
-const baseUrl = "https://image.tmdb.org/t/p/w200";
+import Link from "next/link";
+import HandleSetMovie from "./handleSetMovie";
 
 /**
  *
- * @param each MovieList의 영화 데이터
+ * @param movie MovieList의 영화 데이터
  * @returns MovieList의 매핑된 영화 데이터
  */
-export default function MovieInfo(each: MovieDetailType) {
-  const [mouse, setMouse] = useState(false);
-  const dispatch = useAppDispatch();
-
+export default function MovieInfo(movie: MovieDetailType) {
   return (
-    <li
-      className="relative w-[200px] py-[20px] cursor-pointer"
-      onClick={() => dispatch(selectMovie({ ...each }))}
-      onMouseEnter={() => setMouse(true)}
-      onMouseLeave={() => setMouse(false)}
-    >
-      <div className=" max-w-[200px] max-h-[300px] flex cursor-pointer">
-        <Image
-          src={baseUrl + each.poster_path}
-          alt="poster"
-          width={200}
-          height={300}
-          style={{
-            borderRadius: 10,
-            opacity: mouse ? 0.5 : 1,
-          }}
-          priority
-        />
-        <div className="flex gap-1 absolute top-[10px] left-[10px] items-center p-1 text-[12px] leading-3 text-white bg-[rgba(0,0,0,0.7)] rounded">
+    // HOC client for dispatch (HandleSetMovie)
+    <HandleSetMovie movie={movie}>
+      <Link href={`/calendar`} aria-label="add-movie-link">
+        {/* icon of average */}
+        <div className="flex gap-1 absolute top-[10px] left-[10px] items-center p-1 text-[12px] leading-3 text-white bg-[rgba(0,0,0,0.9)] rounded">
           <StarIcon
             width={12}
             height={12}
             className="text-yellow-400"
           ></StarIcon>
-          <span>{Number(each.vote_average.toFixed(1))}</span>
+          <span>{Number(movie.vote_average.toFixed(1))}</span>
         </div>
-      </div>
-      <h2
-        className="max-w-[200px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap text-center text-white transition-custom"
-        style={{ opacity: mouse ? 1 : 0 }}
-      >
-        {each.title}
-      </h2>
-    </li>
+
+        {/* title & description */}
+        <div className="flex flex-col gap-3 p-3 pt-10 w-full h-[300px] absolute top-0 left-0 text-white transition-custom opacity-0 hover:opacity-100">
+          <h2 className="w-full truncate">{movie.title}</h2>
+          <p className="h-[200px] overflow-scroll text-left text-sm">
+            {movie.overview}
+          </p>
+        </div>
+      </Link>
+    </HandleSetMovie>
   );
 }
