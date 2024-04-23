@@ -21,10 +21,10 @@ export default function MoreMovie() {
       {movies.map((movie) => (
         <MovieInfo key={movie.id} {...movie} />
       ))}
-      <li className="col-span-4 sm:col-span-1 md:col-span-3">
+      <li className="mb-9 col-span-4 sm:col-span-1 md:col-span-3">
         <button
           onClick={loadMoreMovies}
-          className="px-8 py-3 bg-yellow-300 text-black rounded-lg"
+          className="px-6 py-2 text-xs bg-yellow-300 text-black rounded-lg transition-custom hover:scale-110"
         >
           더 보기
         </button>

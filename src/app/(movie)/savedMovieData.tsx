@@ -30,7 +30,11 @@ export default function SavedMovieData() {
           className="cursor-pointer"
           onClick={() => dispatch(deleteMovie(data))}
         >
-          <TrashIcon width={16} height={16} color="gray" />
+          <TrashIcon
+            width={16}
+            height={16}
+            className="text-yellow-200 transition-custom hover:text-stone-900"
+          />
         </button>
         <div
           className="min-w-[10px] h-[10px] rounded-[50%]"
@@ -44,11 +48,14 @@ export default function SavedMovieData() {
 
   return (
     <div className="w-full max-h-[300px] flex flex-col items-center text-white">
-      <h2 className="text-xl text-[#aeaeae] mb-5">• 영화 목록 •</h2>
+      <h2 className="text-md text-[#aeaeae] mb-5">• 영화 목록 •</h2>
       <ul className="flex flex-col max-h-[250px] overflow-scroll gap-4">
         {movieOfDate &&
           movieOfDate.map((data, idx) => (
-            <li className="grid grid-cols-[auto 10px 200px 300px]" key={idx}>
+            <li
+              className="grid grid-cols-savedMovieList place-items-center gap-1"
+              key={idx}
+            >
               {addMovieData(data)}
             </li>
           ))}

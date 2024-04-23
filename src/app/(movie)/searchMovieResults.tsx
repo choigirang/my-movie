@@ -27,13 +27,13 @@ export default function SearchMovieResults(props: SearchResultsProps) {
     <React.Fragment>
       {/* 검색 중일 시 숨기기 */}
       {props.keyword === props.apiKeyword && (
-        <ul className="absolute left-1/2 top-[50px] w-[calc(100% - 10px)] max-h-[280px] -traslate-y-1/2 flex flex-col bg-white overflow-scroll gap-[10px] rounded-l-[5px] rounded-r-[5px] z-[100]">
+        <ul className="absolute left-0 top-[50px] w-full max-h-[280px] flex flex-col bg-white overflow-scroll gap-[10px] rounded-l-[5px] rounded-r-[5px] z-[100]">
           {/* 데이터 매핑 */}
           {props.data &&
             props.data.pages.map((page) =>
               page.map((movie) => (
                 <li
-                  className="w-full p-[10px] text-xs hover:bg-[#b8b8b8] cursor-pointer"
+                  className="w-full p-[10px] text-xs text-start text-stone-800 hover:bg-[#b8b8b8] cursor-pointer"
                   key={movie.id}
                   onClick={() => handleDispatch(movie)}
                 >
@@ -41,23 +41,21 @@ export default function SearchMovieResults(props: SearchResultsProps) {
                 </li>
               ))
             )}
-          {props.keyword === "" && (
-            <li className="w-full p-[10px] text-xs hover:bg-[#b8b8b8] cursor-pointer">
-              검색어를 입력해주세요.
-            </li>
-          )}
           {/* 스피너 */}
           {props.isFetchingNextPage && (
             <PropagateLoader
               loading={props.isFetchingNextPage}
-              size={100}
-              cssOverride={{ display: "flex", margin: "0 auto" }}
+              cssOverride={{
+                display: "flex",
+                margin: "0 auto",
+                color: "#ffe100",
+              }}
             />
           )}
           {/* 더 보기 있을 시 */}
           {props.hasNextPage && (
             <li
-              className="w-full p-[10px] text-xs hover:bg-[#b8b8b8] cursor-pointer"
+              className="w-full p-[10px] text-xs text-stone-600 hover:bg-[#b8b8b8] cursor-pointer"
               onClick={() => props.fetchNextPage()}
             >
               ...더 보기

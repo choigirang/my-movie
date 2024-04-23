@@ -30,6 +30,8 @@ module.exports = {
       gridTemplateRows: {},
       gridTemplateColumns: {
         loginBtn: "20% 80%",
+        selectMovie: "40% 60%",
+        savedMovieList: "auto 10px 200px 300px",
       },
     },
   },

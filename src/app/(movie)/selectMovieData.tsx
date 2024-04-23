@@ -12,7 +12,7 @@ export default function SelectMovieData() {
 
   return (
     <ul className="flex justify-center items-center">
-      <li>
+      <li className="grid grid-cols-selectMovie p-5">
         {selectedMovieData.title && (
           <ImageWithMovieDetail {...selectedMovieData} />
         )}

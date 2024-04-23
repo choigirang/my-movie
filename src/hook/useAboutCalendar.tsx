@@ -21,7 +21,7 @@ export default function useAboutCalendar() {
       return (
         <>
           <div>{day}</div>
-          <div>+{length >= 100 ? 99 : length}</div>
+          <div className="text-xs">{`+ ${length >= 100 ? 99 : length}`}</div>
         </>
       );
     else return <div>{day}</div>;
@@ -32,14 +32,18 @@ export default function useAboutCalendar() {
     const badgeColor = genre_ids[0] ? code[genre_ids[0]].color : "#000000";
     return (
       <li
-        className="flex justify-start truncate w-full min-h-[12px] gap-[10px] text-xs"
+        className="flex justify-start items-center truncate w-full min-h-[12px] gap-[10px] text-xs"
         key={key}
       >
-        <div
-          className="min-h-[10px] rounded-[50%]"
-          style={{ backgroundColor: badgeColor }}
+        <span
+          style={{
+            width: 8,
+            height: 8,
+            backgroundColor: badgeColor,
+            borderRadius: "50%",
+          }}
         />
-        {title}
+        <span>{title}</span>
       </li>
     );
   };
