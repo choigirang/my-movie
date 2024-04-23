@@ -4,6 +4,7 @@ import PersistProvider from "@/provider/persist";
 import Day from "./day";
 import { useState } from "react";
 import { SaveMovieInfo } from "@/type/movie";
+import OpenMoviePopup from "../(movie)/openMoviePopup";
 
 /**
  * @param day CalendarMap의 useCalendar로 계산된 날짜 정보
@@ -24,7 +25,7 @@ export default function Week({
           return <Day key={index} day={day} clickDay={setAddCalendar} />;
         })}
       </ul>
-      {/* {addCalender && <AddMovie></AddMovie>} */}
+      {addCalender && <OpenMoviePopup />}
     </PersistProvider>
   );
 }

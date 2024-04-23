@@ -1,9 +1,4 @@
-"use client";
-
-import { code } from "@/constant/genreCode";
 import useAboutCalendar from "@/hook/useAboutCalendar";
-import { useAppDispatch } from "@/hook/useRedux";
-import { selectMovie } from "@/store/modules/movieSelectSlice";
 import { SaveMovieInfo } from "@/type/movie";
 import { Dispatch, SetStateAction } from "react";
 

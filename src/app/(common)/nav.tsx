@@ -3,10 +3,12 @@
 import Link from "next/link";
 import Category from "./category";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "@/hook/useRedux";
 
 /** 2024/04/04 - 레이아웃 header 컴포넌트 */
 export default function Header() {
   const [scroll, setScroll] = useState(false);
+  const selected = useAppSelector((state) => state.movieSlice);
 
   /** 스크롤 */
   useEffect(() => {
@@ -26,8 +28,8 @@ export default function Header() {
 
   return (
     <nav
-      className="nav transition-custom"
-      style={{ background: scroll ? "rgba(0,0,0,0.2)" : "none" }}
+      className={`${!selected.title || !selected.date ? "nav" : "hideNav"} h-[100px] transition-custom`}
+      style={{ background: scroll ? "rgba(0,0,0,0.7)" : "none" }}
     >
       <div className="container h-full flex justify-between items-center pt-0">
         <h1 className="text-3xl text-yellow-400 font-bold">
