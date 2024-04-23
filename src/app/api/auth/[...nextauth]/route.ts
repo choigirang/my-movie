@@ -6,7 +6,7 @@ import GithubProvider from "next-auth/providers/github";
 /**
  * @returns next/auth redirect page
  */
-export default NextAuth({
+const handler = NextAuth({
   providers: [
     KakaoProvider({
       clientId: process.env.KAKAO_CLIENT_ID!,
@@ -26,3 +26,5 @@ export default NextAuth({
   },
   secret: process.env.NEXTAUTH_SECRET,
 });
+
+export { handler as GET, handler as POST };
