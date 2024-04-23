@@ -14,9 +14,9 @@ export default function LoginBtn(social: Social) {
   const [hover, setHover] = useState(false);
   const { data } = useSession();
 
-  //   useEffect(() => {
-  //     if (data !== null) window.location.href = "/";
-  //   }, [data]);
+  useEffect(() => {
+    if (data !== null) window.location.href = "/";
+  }, [data]);
 
   return (
     <button
