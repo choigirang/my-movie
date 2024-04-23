@@ -4,8 +4,8 @@ import { MoonLoader } from "react-spinners";
 
 import { useAppSelector } from "@/hook/useRedux";
 
-import MovieDetail from "@/components/home/MovieDetail";
 import useResizeDetail from "@/hook/useResizeDetail";
+import MovieDetail from "./movieDetail";
 
 /**
  * 선택된 영화 이미지
