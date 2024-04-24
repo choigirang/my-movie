@@ -11,7 +11,7 @@
 <br>
 
 <details>
-<summary>Next 14</summary>
+<summary>Next 14 펼치기</summary>
 
 ## Refactor Next 13 => 14
 
@@ -34,7 +34,7 @@
 </details>
 
 <details>
-<summary>Next 13</summary>
+<summary>Next 13 펼치기</summary>
 
 ## 기술 목록
 
