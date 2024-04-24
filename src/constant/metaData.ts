@@ -10,8 +10,8 @@ export const META = {
   description: "매일의 영화를 기록하거나, 새로운 영화로 계획을 세우는 캘린더.",
   keyword: ["영화 기록", "영화 추천", "최신 영화", "캘린더"],
   url: "https://my-movie-tawny.vercel.app/",
-  googleVerification: "xxx",
-  naverVerification: "xxx",
+  googleVerification: process.env.GOOGLE || "",
+  naverVerification: process.env.NAVER || "",
   ogImage: "/main.png",
 } as const;
 
