@@ -1,0 +1,44 @@
+@import url(https://fonts.googleapis.com/css?family=Exo:100);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  font:
+    400 16px/1.5 exo,
+    ubuntu,
+    "segoe ui",
+    helvetica,
+    arial,
+    sans-serif;
+  font-family: "NotoSans Kr", sans-serif;
+  text-align: center;
+  background-color: black;
+}
+
+@layer components {
+  .container {
+    @apply w-full flex justify-center  pt-16;
+  }
+  .nav {
+    @apply fixed z-[100] top-0 left-0 w-full h-32 py-0 flex justify-center bg-transparent;
+  }
+  .hideNav {
+    @apply absolute top-0 left-0 w-full h-32 py-0 flex justify-center bg-transparent;
+  }
+  .button-hover {
+    @apply transition-custom mx-2 hover:cursor-pointer hover:text-yellow-400;
+  }
+  .title {
+    @apply text-5xl text-center font-bold drop-shadow-lg text-yellow-400;
+  }
+}

@@ -15,13 +15,20 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/api/auth/[...nextauth]"
+    "src/pages/api/auth/[...nextauth]",
+    ".next/types/**/*.ts",
+    "src/app/(movie)"
   ],
   "exclude": ["node_modules", ".next"]
 }

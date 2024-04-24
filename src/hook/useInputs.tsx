@@ -16,9 +16,15 @@ export default function useInputs(initialData: string | number) {
     setKeyword(value);
   };
 
+  const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setKeyword(e.currentTarget.value);
+    }
+  };
+
   const setInit = () => {
     setKeyword("");
   };
 
-  return [keyword, onChange, setInit] as const;
+  return [keyword, onChange, onEnter, setInit] as const;
 }

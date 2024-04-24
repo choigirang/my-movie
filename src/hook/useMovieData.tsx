@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { api } from "@/api/api";
 
 import { useInfiniteQuery } from "react-query";
 import { MovieDetailType } from "@/type/movie";
+import { api } from "@/app/api/api";
 
 /**
  * api data의 page에 따른 useInfiniteQuery
