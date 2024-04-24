@@ -13,10 +13,6 @@ export default function useMakeCalendar() {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const savedMovieData = useAppSelector((state) => state.savedMovieSlice);
 
-  useEffect(() => {
-    generateCalendar(currentDate);
-  }, [currentDate]);
-
   const generateCalendar = (date: Date) => {
     const firstDayOfMonth = startOfMonth(date);
     const startDayOfWeek = getDay(firstDayOfMonth);
