@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /exclude
+
+# Host
+Host: https://my-movie-tawny.vercel.app/
+
+# Sitemaps
+Sitemap: https://my-movie-tawny.vercel.app/sitemap.xml
