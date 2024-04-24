@@ -12,16 +12,16 @@ export const META = {
   url: "https://my-movie-tawny.vercel.app/",
   googleVerification: "xxx",
   naverVerification: "xxx",
-  ogImage: "/",
+  ogImage: "/main.png",
 } as const;
 
 export const getMetadata = (metadataProps?: MetadataProps) => {
-  const { title, description, asPath, ogImage } = metadataProps || {};
+  const { title, description, asPath } = metadataProps || {};
 
   const TITLE = title ? `${title} | 영화 기록 일지` : META.title;
   const DESCRIPTION = description || META.description;
-  const PAGE_URL = asPath ? asPath : "";
-  const OG_IMAGE = ogImage || META.ogImage;
+  const PAGE_URL = asPath ? META.url + asPath : META.url;
+  const OG_IMAGE = META.ogImage;
 
   const metadata: Metadata = {
     metadataBase: new URL(META.url),
