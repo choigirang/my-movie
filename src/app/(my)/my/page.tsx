@@ -2,6 +2,12 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 import { FaGooglePlusSquare } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import LoginBtn from "../loginBtn";
+import { getMetadata } from "@/constant/metaData";
+import { Metadata } from "next";
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  return getMetadata({ title: "마이 페이지", asPath: "my" });
+};
 
 const loginBtn = [
   {

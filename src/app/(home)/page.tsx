@@ -3,10 +3,10 @@ import { api } from "../api/api";
 import MoreMovie from "./moreMovie";
 import { MovieDetailType } from "@/type/movie";
 import MovieInfo from "./movieInfo";
+import { getMetadata } from "@/constant/metaData";
 
-export const metadata: Metadata = {
-  title: "나의 영화 일지",
-  description: "영화 기록하기",
+export const generateMetadata = async (): Promise<Metadata> => {
+  return getMetadata();
 };
 
 async function getMovie() {

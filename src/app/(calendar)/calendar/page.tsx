@@ -1,4 +1,10 @@
+import { getMetadata } from "@/constant/metaData";
 import AboutMap from "../aboutMap";
+import { Metadata } from "next";
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  return getMetadata({title: "캘린더", asPath: "calendar"});
+};
 
 const DAY_LIST = ["일", "월", "화", "수", "목", "금", "토"];
 
