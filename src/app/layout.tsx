@@ -17,18 +17,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="kr">
-      <body>
-        <ReduxProvider>
-          <QueryProvider>
-            <SessionProvider>
+    <ReduxProvider>
+      <QueryProvider>
+        <SessionProvider>
+          <html lang="kr">
+            <body>
               <Nav />
               {children}
               <ScrollBtn />
-            </SessionProvider>
-          </QueryProvider>
-        </ReduxProvider>
-      </body>
-    </html>
+            </body>
+          </html>
+        </SessionProvider>
+      </QueryProvider>
+    </ReduxProvider>
   );
 }
