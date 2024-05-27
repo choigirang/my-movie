@@ -73,9 +73,11 @@ export default function Category() {
           <Link href="/calendar">Calendar</Link>
         </li>
         {!user && (
-          <Link href="/my" key="로그인" className="hover:text-yellow-400">
-            My
-          </Link>
+          <li>
+            <Link href="/my" key="로그인" className="hover:text-yellow-400">
+              My
+            </Link>
+          </li>
         )}
         {user && loginUser}
         {isMobile && (
